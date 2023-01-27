@@ -1,38 +1,42 @@
-﻿@model Libro
-
+﻿@model LibreriaView
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Titolo" class="control-label"></label>
-                <input asp-for="Titolo" class="form-control" />
-                <span asp-validation-for="Titolo" class="text-danger"></span>
+                <label asp-for="Libro.Titolo" class="control-label"></label>
+                <input asp-for="Libro.Titolo" class="form-control" />
+                <span asp-validation-for="Libro.Titolo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Trama" class="control-label"></label>
-                <input asp-for="Trama" class="form-control" />
-                <span asp-validation-for="Trama" class="text-danger"></span>
+                <label asp-for="Libro.Autore" class="control-label"></label>
+                <input asp-for="Libro.Autore" class="form-control" />
+                <span asp-validation-for="Libro.Autore" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Foto" class="control-label"></label>
-                <input asp-for="Foto" class="form-control" />
-                <span asp-validation-for="Foto" class="text-danger"></span>
+                <label asp-for="Libro.Isbm" class="control-label"></label>
+                <input asp-for="Libro.Isbm" class="form-control" />
+                <span asp-validation-for="Libro.Isbm" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Prezzo" class="control-label"></label>
-                <input asp-for="Prezzo" class="form-control" />
-                <span asp-validation-for="Prezzo" class="text-danger"></span>
+                <label asp-for="Libro.Trama" class="control-label"></label>
+                <input asp-for="Libro.Trama" class="form-control" />
+                <span asp-validation-for="Libro.Trama" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Quantita" class="control-label"></label>
-                <input asp-for="Quantita" class="form-control" />
-                <span asp-validation-for="Quantita" class="text-danger"></span>
+                <label asp-for="Libro.Foto" class="control-label"></label>
+                <input asp-for="Libro.Foto" class="form-control" />
+                <span asp-validation-for="Libro.Foto" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Prezzo" class="control-label"></label>
-                <input asp-for="Prezzo" class="form-control" />
-                <span asp-validation-for="Prezzo" class="text-danger"></span>
+                <label asp-for="Libro.Prezzo" class="control-label"></label>
+                <input asp-for="Libro.Prezzo" class="form-control" />
+                <span asp-validation-for="Libro.Prezzo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Libro.Quantita" class="control-label"></label>
+                <input asp-for="Libro.Quantita" class="form-control" />
+                <span asp-validation-for="Libro.Quantita" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

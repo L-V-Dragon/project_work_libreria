@@ -18,7 +18,7 @@ namespace project_work_libreria.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IAsyncResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             using LibreriaContext db = new LibreriaContext();
             {
@@ -29,11 +29,11 @@ namespace project_work_libreria.Controllers
                     db.Libri.Remove(libroDaEliminare);
                     db.SaveChanges();
 
-                    return (IAsyncResult)RedirectToAction("Index");
+                    return Index();
                 }
                 else
                 {
-                    return (IAsyncResult)NotFound("Il libro da eliminare non è stato trovato!");
+                    return NotFound("Il libro da eliminare non è stato trovato!");
                 }
             }
         }
@@ -69,6 +69,9 @@ namespace project_work_libreria.Controllers
 
             using (LibreriaContext db = new LibreriaContext())
             {
+                if (formdata.Libro.Like == null) {
+                    formdata.Libro.Like = 0;
+                }
                 db.Libri.Add(formdata.Libro);
                 db.SaveChanges();
             }

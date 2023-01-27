@@ -6,11 +6,10 @@ namespace project_work_libreria.CustomValidation
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-            if (value is not string FieldValue) return new ValidationResult("Errore");
+            double FieldValue=0;
             try
             {
-                double x = double.Parse(FieldValue);
-                if (x < 0)
+                if (FieldValue < 0)
                 {
                     return new ValidationResult("Hai inserito un prezzo non possibile");
                 }
