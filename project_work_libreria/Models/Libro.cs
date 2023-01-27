@@ -6,6 +6,8 @@ namespace project_work_libreria.Models {
         [Key]
         public int Id { get; set; }
 
+        public string Titolo { get; set; }
+
         public Libro() { }
 
 
