@@ -1,5 +1,51 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model LibreriaView
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Amministrazione"  asp-action="Update" asp-route-id="@Model.Libro.Id" method="post">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Libro.Id" class="control-label"></label>
+                <input asp-for="Libro.Id" class="form-control" disabled />
+                
+            </div>
+            <div class="form-group">
+                <label asp-for="Libro.Titolo" class="control-label"></label>
+                <input asp-for="Libro.Titolo" class="form-control" />
+                <span asp-validation-for="Libro.Titolo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Libro.Autore" class="control-label"></label>
+                <input asp-for="Libro.Autore" class="form-control" />
+                <span asp-validation-for="Libro.Autore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Libro.Isbm" class="control-label"></label>
+                <input asp-for="Libro.Isbm" class="form-control" />
+                <span asp-validation-for="Libro.Isbm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Libro.Trama" class="control-label"></label>
+                <input asp-for="Libro.Trama" class="form-control" />
+                <span asp-validation-for="Libro.Trama" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Libro.Foto" class="control-label"></label>
+                <input asp-for="Libro.Foto" class="form-control" />
+                <span asp-validation-for="Libro.Foto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Libro.Prezzo" class="control-label"></label>
+                <input asp-for="Libro.Prezzo" class="form-control" />
+                <span asp-validation-for="Libro.Prezzo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Libro.Quantita" class="control-label"></label>
+                <input asp-for="Libro.Quantita" class="form-control" />
+                <span asp-validation-for="Libro.Quantita" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Salva Modifiche </button>
+        </form>
+    </div>
+</div>
+
