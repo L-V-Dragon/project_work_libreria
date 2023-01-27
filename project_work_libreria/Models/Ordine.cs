@@ -8,14 +8,15 @@ namespace project_work_libreria.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Questo campo è obbligatorio")]
+        [Range(1, 100, ErrorMessage = "Il numero deve essere compreso tra 1 e 100.")]  //mettere un altro messaggio di errore?
         public int Quantita { get; set; }
 
         [Required]
         public DateTime Data { get; set; }
 
         //Chiavi per relazioni con utente e libro
-        public List<User>? nUtenti { get; set; }
-        public List<Libro>? nLibri { get; set; }
+        public List<Libro>? Libri { get; set; }
+        //public List<Utente>? Utenti { get; set; }
 
         //Chiave per relazione 1 a N con fornitore
         public int FornitoreId { get; set; }
@@ -23,10 +24,6 @@ namespace project_work_libreria.Models
 
         //Costruttori
         public Ordine() { }
-        public Ordine(int quantita)
-        {
-            Quantita = quantita;
-            Data = DateTime.Now;  //funziona?
-        }
+        
     }
 } 
