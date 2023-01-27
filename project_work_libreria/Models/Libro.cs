@@ -26,7 +26,8 @@ namespace project_work_libreria.Models {
         [ImageUrlValidation]
         public string Foto { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Questo campo è obbligatorio")]
+        [PriceValidation]
         public double Prezzo { get; set; }
 
         [Required]
@@ -39,5 +40,9 @@ namespace project_work_libreria.Models {
 
         public Libro() { }
 
+        public double StampaPrezzo()
+        {
+            return Math.Round(Prezzo, 2);
+        }
     }
 }
