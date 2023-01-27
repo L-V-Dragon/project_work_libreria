@@ -2,5 +2,9 @@
 {
     public class LibreriaView
     {
+        public Libro Libro { get; set; }
+
+        public List<Genere>? Genere { get; set; }
+
     }
 }
