@@ -22,4 +22,5 @@ namespace project_work_libreria.CustomValidation
                 return new ValidationResult("Non hai inserito dei numeri");
             }
         }
+    }
 }
