@@ -29,7 +29,7 @@ namespace project_work_libreria.Controllers
                     db.Libri.Remove(libroDaEliminare);
                     db.SaveChanges();
 
-                    return Index();
+                    return RedirectToAction("Index");
                 }
                 else
                 {
