@@ -10,7 +10,7 @@ namespace project_work_libreria.Models {
         public int Id { get; set; }
 
         [Required]
-        public string Isbm { get; set; }
+        public string Isbn { get; set; }
 
         [Required]
         public string Titolo { get; set; }
@@ -29,7 +29,6 @@ namespace project_work_libreria.Models {
         [Required(ErrorMessage = "Questo campo è obbligatorio")]
         public double Prezzo { get; set; }
 
-        [Required]
         public int? Quantita { get; set; }
 
         public int? Like { get; set; }
