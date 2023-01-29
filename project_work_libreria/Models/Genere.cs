@@ -6,7 +6,7 @@
 
         public string Nome { get; set; }
 
-        List<Libro> Libri  { get; set; }
+        List<Libro> Libri { get; set; }
         public Genere() { }
     }
 }
