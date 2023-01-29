@@ -5,7 +5,6 @@ using System.Diagnostics;
 
 namespace project_work_libreria.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
