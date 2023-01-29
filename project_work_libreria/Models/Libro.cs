@@ -27,6 +27,7 @@ namespace project_work_libreria.Models {
         public string Foto { get; set; }
 
         [Required(ErrorMessage = "Questo campo è obbligatorio")]
+        [PriceValidation]
         public double Prezzo { get; set; }
 
         public int? Quantita { get; set; }

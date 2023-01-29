@@ -19,30 +19,6 @@
              </div>
           </div>
 
-@section Scripts{
-
-    <script type= "text/javascript">
-      loadProdotti();
-           document.getElementById('input_search').addEventListener('keyup', searchProdotti);
-            function searchProdotti() {
-                let stringaDiRicerca = document.getElementById('input_search').value;
-                loadProdotti(stringaDiRicerca);
-            }
-        
-              function loadProdotti(searchString) {
-                axios.get('/api/Apiamministrazione', {
-                    params: {
-                        search: searchString
-                    }
-                }
-                   
-
-    </script>
-}         
-
-
-
-
 <table class="table mt-5">
     <thead>
         <tr>
@@ -88,5 +64,13 @@
 
     </tbody>
 </table>
+    @section Scripts{
+
+    <script type="text/javascript">
+        loadProdotti();
+        document.getElementById('input_search').addEventListener('keyup', searchProdotti);
+    </script>
+}
+
 
 }

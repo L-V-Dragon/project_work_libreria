@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.SqlServer.Server;
 using project_work_libreria.Database;
 using project_work_libreria.Models;
 
@@ -71,7 +72,9 @@ namespace project_work_libreria.Controllers
             {
                 if (formdata.Libro.Like == null) {
                     formdata.Libro.Like = 0;
+                    
                 }
+                formdata.Libro.Prezzo= ((int)(formdata.Libro.Prezzo*100)/100.00);
                 db.Libri.Add(formdata.Libro);
                 db.SaveChanges();
             }
@@ -126,7 +129,7 @@ namespace project_work_libreria.Controllers
                 {
                     libroDaAggiornare.Titolo = formData.Libro.Titolo;
                     libroDaAggiornare.Trama = formData.Libro.Trama;
-                    libroDaAggiornare.Prezzo = formData.Libro.Prezzo;
+                    libroDaAggiornare.Prezzo = formData.Libro.Prezzo = ((int)(formData.Libro.Prezzo * 100) / 100.00); ;
                     libroDaAggiornare.GenereId = formData.Libro.GenereId;
                     libroDaAggiornare.Quantita = formData.Libro.Quantita;
                     libroDaAggiornare.Foto = formData.Libro.Foto;
