@@ -6,7 +6,10 @@ using project_work_libreria.Models;
 namespace project_work_libreria.Controllers {
     public class ClienteController : Controller {
         public IActionResult Index() {
-            return View();
+            using LibreriaContext db = new();
+            List<Libro> listaLibri = db.Libri.OrderBy(x => x.Quantita).ToList<Libro>();
+
+            return View(listaLibri);
         }
 
         public IActionResult Dettagli(int id) {
