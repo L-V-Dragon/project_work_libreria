@@ -1,15 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using project_work_libreria.CustomValidation;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.InteropServices;
+using System.Security.Policy;
 
 namespace project_work_libreria.Models {
+    [Index(nameof(Isbn), IsUnique = true)]
     public class Libro {
 
         [Key]
         public int Id { get; set; }
 
         [Required]
+        [StringLength(15)]
+
         public string Isbn { get; set; }
 
         [Required]

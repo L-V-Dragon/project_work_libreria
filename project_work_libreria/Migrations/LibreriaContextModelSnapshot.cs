@@ -60,7 +60,8 @@ namespace projectworklibreria.Migrations
 
                     b.Property<string>("Isbn")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<int?>("Like")
                         .HasColumnType("int");
@@ -82,6 +83,9 @@ namespace projectworklibreria.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("GenereId");
+
+                    b.HasIndex("Isbn")
+                        .IsUnique();
 
                     b.ToTable("Libri");
                 });
