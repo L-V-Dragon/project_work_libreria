@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using project_work_libreria.Database;
 
@@ -11,9 +12,11 @@ using project_work_libreria.Database;
 namespace projectworklibreria.Migrations
 {
     [DbContext(typeof(LibreriaContext))]
-    partial class LibreriaContextModelSnapshot : ModelSnapshot
+    [Migration("20230130102739_NewGenere")]
+    partial class NewGenere
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,6 +32,9 @@ namespace projectworklibreria.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("NewGenere")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -55,7 +61,7 @@ namespace projectworklibreria.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("GenereId")
+                    b.Property<int>("GenereId")
                         .HasColumnType("int");
 
                     b.Property<string>("Isbn")
@@ -94,7 +100,9 @@ namespace projectworklibreria.Migrations
                 {
                     b.HasOne("project_work_libreria.Models.Genere", "Genere")
                         .WithMany()
-                        .HasForeignKey("GenereId");
+                        .HasForeignKey("GenereId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Genere");
                 });

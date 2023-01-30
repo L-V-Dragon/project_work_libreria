@@ -23,7 +23,7 @@ namespace project_work_libreria.Controllers
         {
             using LibreriaContext db = new LibreriaContext();
             {
-                Libro libroDaEliminare = db.Libri.Where(Libro => Libro.Id == id).Include(Libro => Libro.Genere).FirstOrDefault();
+                Libro libroDaEliminare = db.Libri.Where(Libro => Libro.Id == id).FirstOrDefault();
 
                 if (libroDaEliminare != null)
                 {

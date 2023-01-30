@@ -7,7 +7,6 @@ using System.Runtime.InteropServices;
 using System.Security.Policy;
 
 namespace project_work_libreria.Models {
-    [Index(nameof(Isbn), IsUnique = true)]
     public class Libro {
 
         [Key]
@@ -15,7 +14,7 @@ namespace project_work_libreria.Models {
 
         [Required]
         [StringLength(15)]
-
+        [IsbnValidation]
         public string Isbn { get; set; }
 
         [Required]
@@ -39,7 +38,7 @@ namespace project_work_libreria.Models {
 
         public int? Like { get; set; }
 
-        public int GenereId { get; set; }
+        public int? GenereId { get; set; }
         public Genere? Genere { get; set; }
 
         public Libro() { }
