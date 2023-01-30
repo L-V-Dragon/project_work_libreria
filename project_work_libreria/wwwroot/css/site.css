@@ -17,8 +17,12 @@ html {
 
 body {
     margin-bottom: 60px;
-    background-image: url(https://th.bing.com/th/id/R.c5bcff824bbdda570290fb2dacaee100?rik=0rmZa6eyHUlHmw&pid=ImgRaw&r=0&sres=1&sresct=1);
-    
+    background-image: url(https://th.bing.com/th/id/R.91b4ffc0495050234722a38cc9fa2867?rik=PKi9hX9OTHGdBQ&pid=ImgRaw&r=0)
+}
+
+.bg-nav {
+    background-color:saddlebrown;
+    opacity:60%;
 }
 
 
