@@ -5,7 +5,7 @@
 namespace projectworklibreria.Migrations
 {
     /// <inheritdoc />
-    public partial class isbnUnique : Migration
+    public partial class x : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
