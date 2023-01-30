@@ -33,8 +33,8 @@ namespace project_work_libreria.Models {
 
         public int? Like { get; set; }
 
-        public int? GenereId { get; set; }
-        public Genere Genere { get; set; }
+        public int GenereId { get; set; }
+        public Genere? Genere { get; set; }
 
         public Libro() { }
 

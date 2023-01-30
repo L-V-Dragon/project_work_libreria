@@ -23,7 +23,7 @@ namespace project_work_libreria.Controllers
         {
             using LibreriaContext db = new LibreriaContext();
             {
-                Libro libroDaEliminare = db.Libri.Where(Libro => Libro.Id == id).FirstOrDefault();
+                Libro libroDaEliminare = db.Libri.Where(Libro => Libro.Id == id).Include(Libro => Libro.Genere).FirstOrDefault();
 
                 if (libroDaEliminare != null)
                 {
@@ -45,10 +45,10 @@ namespace project_work_libreria.Controllers
             using(LibreriaContext db= new LibreriaContext())
             {
                 List<Genere> genereDalDb= db.Genere.ToList<Genere>();
-                LibreriaView modelFroView = new LibreriaView();
-                modelFroView.Libro = new Libro();
-                modelFroView.Genere = genereDalDb;
-                return View("Create", modelFroView);
+                LibreriaView modelForView = new LibreriaView();
+                modelForView.Libro = new Libro();
+                modelForView.Genere = genereDalDb;
+                return View("Create", modelForView);
             }
         }
 
@@ -94,11 +94,11 @@ namespace project_work_libreria.Controllers
                 {
                     List<Genere> generi = db.Genere.ToList<Genere>();
 
-                    LibreriaView modelFroview = new LibreriaView();
-                    modelFroview.Libro = libroDaAggiornare;
-                    modelFroview.Genere = generi;
+                    LibreriaView modelForView = new LibreriaView();
+                    modelForView.Libro = libroDaAggiornare;
+                    modelForView.Genere = generi;
 
-                    return View("Update", modelFroview);
+                    return View("Update", modelForView);
                 }
             }
         }
