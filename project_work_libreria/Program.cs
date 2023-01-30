@@ -1,4 +1,15 @@
+using Microsoft.AspNetCore.Identity;
+using project_work_libreria.Database;
+using System;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<LibreriaContext>();
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<LibreriaContext>();
+
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -17,11 +28,14 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+// codice da aggiungere dopo app.UseRouting()
+app.UseAuthentication();
+
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+app.MapRazorPages();
 app.Run();
