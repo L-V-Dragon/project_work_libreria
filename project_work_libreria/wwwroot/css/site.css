@@ -16,3 +16,14 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+* {
+    box-sizing: border-box;
+}
+
+.miei-buttons-post {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}

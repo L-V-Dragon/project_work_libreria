@@ -22,6 +22,7 @@ namespace projectworklibreria.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -56,6 +57,7 @@ namespace projectworklibreria.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -218,6 +220,7 @@ namespace projectworklibreria.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+
                 });
 
             modelBuilder.Entity("project_work_libreria.Models.Libro", b =>
@@ -228,7 +231,45 @@ namespace projectworklibreria.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Autore")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Foto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("GenereId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Isbn")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<int?>("Like")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Prezzo")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("Quantita")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Titolo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Trama")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("GenereId");
+
+                    b.HasIndex("Isbn")
+                        .IsUnique();
 
                     b.ToTable("Libri");
                 });
@@ -282,6 +323,7 @@ namespace projectworklibreria.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
                 });
 #pragma warning restore 612, 618
         }
