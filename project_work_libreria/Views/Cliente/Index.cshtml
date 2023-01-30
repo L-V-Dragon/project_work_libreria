@@ -1,9 +1,50 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model List<Libro>
+
+@if (Model.Count == 0)
+{
+    <h3>Nessun Libro in vendita</h3>
+
 }
+else
+{
+    <div class="container bg-secondary bg-opacity-25">
+
+        <div class="row text-white">
 
 
-<h1>Index cliente</h1>
 
+
+            <div class="row justify-content-center">
+
+                @foreach (Libro libro in Model)
+                {
+                    <div class="col-12 col-md-6 container text-center">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <img src="@libro.Foto" class="" alt="immagine">
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <h4 class="pt-3">@libro.Titolo</h4> 
+                                <h4 class="pt-3">@libro.Genere.Nome</h4>  
+                                <h4 class="pt-3">@libro.Prezzo</h4>
+                                <a href="@Url.Action("","",new{})">Like</a>
+                                <a href="@Url.Action("","",new{})">Compra</a>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h4>@libro.Trama</h4>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+
+
+}
