@@ -12,7 +12,7 @@ namespace project_work_libreria.Controllers {
         public IActionResult Dettagli(int id) {
             using (LibreriaContext db = new LibreriaContext())
             {
-                // LINQ: syntax methos
+               
                 Libro libroTrovato = db.Libri
                     .Where(SingoloLibroNelDb => SingoloLibroNelDb.Id == id)
                     .Include(Libro => Libro.Genere)
