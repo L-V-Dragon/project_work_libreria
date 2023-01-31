@@ -20,7 +20,9 @@
 
 }
 
-
+img{
+    padding:10px;
+}
 
 
 body {
@@ -48,7 +50,10 @@ input,button,textarea,select{
     font:inherit;
 }
 
-
+p {
+    word-break: break-all;
+    white-space: normal;
+}
 p, h1, h3, h4, h5, h6 {
     overflow-wrap: break-word;
 }
@@ -111,16 +116,15 @@ body{
 
 
 /*style product*/
-.product{
-
+.product {
     --content-padding: 1.5rem;
-    --content-spacing:1rem;
-
-    display:grid;
-    background-color:var(--clr-neutral-100);
-    border-radius:0.5rem;
-    overflow:hidden;
-    max-width:600px;
+    --content-spacing: 1rem;
+    display: grid;
+    background-color: var(--clr-neutral-100);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    max-width: 800px;
+    box-shadow: 0px 0px 0px 20px rgba(74,74,74,0.8);
 }
 
 @media(min-width:600px){
