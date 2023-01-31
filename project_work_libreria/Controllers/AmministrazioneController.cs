@@ -147,10 +147,45 @@ namespace project_work_libreria.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult Ordine(int id)
+        {
+            using (LibreriaContext db = new LibreriaContext())
+            {
+                Libro libriFromDb = db.Libri.Where(SingoloLibroNelDb => SingoloLibroNelDb.Id == id).Include(Libro => Libro.Genere).FirstOrDefault();
 
+                LibreriaView modelForView = new LibreriaView();
 
+                modelForView.Libro = new Libro();
+                modelForView.Ordine = new Ordine();
+                modelForView.Genere = db.Genere.ToList();
 
+                return View("Ordine", modelForView);
+            }
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Ordine(LibreriaView formData)
+        {
+            if (!ModelState.IsValid)
+
+            {
+                return View(formData);
+            }
+
+            using (LibreriaContext db = new LibreriaContext())
+            {
+                formData.Ordine.Data = DateTime.Now;
+                Libro libro = db.Libri.Where(SingoloLibroNelDb => SingoloLibroNelDb.Id == formData.Libro.Id).FirstOrDefault();
+                libro.Quantita = libro.Quantita + formData.Ordine.Quantita;
+
+                db.Ordine.Add(formData.Ordine);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
 
     }
 }
