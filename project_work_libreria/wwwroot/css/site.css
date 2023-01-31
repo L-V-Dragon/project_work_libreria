@@ -38,10 +38,20 @@ body {
     flex-wrap: wrap;
 }
 
+.card{
+    background-color:rgba(100,100,100,0.66);
+}
 
 
 
-
+.myClass {
+    position: absolute;
+    line-height: 60px;
+    bottom: 0px;
+    width: 100%;
+    right: 0;
+    left: 0;
+}
 
 
 

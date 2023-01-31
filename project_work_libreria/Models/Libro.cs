@@ -38,10 +38,5 @@ namespace project_work_libreria.Models {
         public Genere? Genere { get; set; }
 
         public Libro() { }
-
-        public double StampaPrezzo()
-        {
-            return Math.Round(Prezzo, 2);
-        }
     }
 }
