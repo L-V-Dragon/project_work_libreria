@@ -7,7 +7,7 @@ namespace project_work_libreria.Controllers {
     public class ClienteController : Controller {
         public IActionResult Index() {
             using LibreriaContext db = new();
-            List<Libro> listaLibri = db.Libri.OrderBy(x => x.Quantita).ToList<Libro>();
+            List<Libro> listaLibri = db.Libri.Include(Libro => Libro.Genere).OrderBy(x => x.Quantita).ToList<Libro>();
 
             return View(listaLibri);
         }

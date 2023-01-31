@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using project_work_libreria.Database;
 using project_work_libreria.Models;
 using System.Diagnostics;
 
@@ -15,7 +17,12 @@ namespace project_work_libreria.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            using (LibreriaContext db = new LibreriaContext())
+            {
+                List<Libro> listaLibri = db.Libri.Include(Libro => Libro.Genere).OrderBy(x => x.Quantita).ToList<Libro>();
+
+                return View(listaLibri);
+            }
         }
 
         public IActionResult Privacy()

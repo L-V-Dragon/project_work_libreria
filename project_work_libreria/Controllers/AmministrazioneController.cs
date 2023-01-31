@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.SqlServer.Server;
 using project_work_libreria.Database;
 using project_work_libreria.Models;
@@ -11,7 +12,7 @@ namespace project_work_libreria.Controllers
         {
             using (LibreriaContext db = new LibreriaContext())
             {
-                List<Libro> listaLibri = db.Libri.OrderBy(x=>x.Quantita).ToList<Libro>();
+                List<Libro> listaLibri = db.Libri.Include(Libro => Libro.Genere).OrderBy(x=>x.Quantita).ToList<Libro>();
 
                 return View(listaLibri);
             }
