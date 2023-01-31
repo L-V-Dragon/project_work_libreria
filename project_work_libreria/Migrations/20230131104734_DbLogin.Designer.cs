@@ -12,8 +12,8 @@ using project_work_libreria.Database;
 namespace projectworklibreria.Migrations
 {
     [DbContext(typeof(LibreriaContext))]
-    [Migration("20230130142040_x")]
-    partial class x
+    [Migration("20230131104734_DbLogin")]
+    partial class DbLogin
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -223,6 +223,23 @@ namespace projectworklibreria.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("project_work_libreria.Models.Fornitore", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Fornitore");
+                });
+
             modelBuilder.Entity("project_work_libreria.Models.Genere", b =>
                 {
                     b.Property<int>("Id")
@@ -252,6 +269,9 @@ namespace projectworklibreria.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("FornitoreId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Foto")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -265,6 +285,9 @@ namespace projectworklibreria.Migrations
                         .HasColumnType("nvarchar(15)");
 
                     b.Property<int?>("Like")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OrdineId")
                         .HasColumnType("int");
 
                     b.Property<double>("Prezzo")
@@ -283,9 +306,37 @@ namespace projectworklibreria.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("FornitoreId");
+
                     b.HasIndex("GenereId");
 
+                    b.HasIndex("OrdineId");
+
                     b.ToTable("Libri");
+                });
+
+            modelBuilder.Entity("project_work_libreria.Models.Ordine", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FornitoreId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantita")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FornitoreId");
+
+                    b.ToTable("Ordine");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -341,11 +392,40 @@ namespace projectworklibreria.Migrations
 
             modelBuilder.Entity("project_work_libreria.Models.Libro", b =>
                 {
+                    b.HasOne("project_work_libreria.Models.Fornitore", null)
+                        .WithMany("Libri")
+                        .HasForeignKey("FornitoreId");
+
                     b.HasOne("project_work_libreria.Models.Genere", "Genere")
                         .WithMany()
                         .HasForeignKey("GenereId");
 
+                    b.HasOne("project_work_libreria.Models.Ordine", null)
+                        .WithMany("Libri")
+                        .HasForeignKey("OrdineId");
+
                     b.Navigation("Genere");
+                });
+
+            modelBuilder.Entity("project_work_libreria.Models.Ordine", b =>
+                {
+                    b.HasOne("project_work_libreria.Models.Fornitore", "Fornitore")
+                        .WithMany()
+                        .HasForeignKey("FornitoreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Fornitore");
+                });
+
+            modelBuilder.Entity("project_work_libreria.Models.Fornitore", b =>
+                {
+                    b.Navigation("Libri");
+                });
+
+            modelBuilder.Entity("project_work_libreria.Models.Ordine", b =>
+                {
+                    b.Navigation("Libri");
                 });
 #pragma warning restore 612, 618
         }
