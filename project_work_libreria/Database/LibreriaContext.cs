@@ -9,6 +9,8 @@ namespace project_work_libreria.Database {
         public DbSet<Libro> Libri { get; set; }
 
         public DbSet<Ordine> Ordine { get; set; }
+
+        public DbSet<OrdineCliente> OrdineCliente { get; set; }
         public DbSet<Fornitore> Fornitore { get; set; }
 
 

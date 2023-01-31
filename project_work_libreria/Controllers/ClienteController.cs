@@ -61,13 +61,11 @@ namespace project_work_libreria.Controllers
         {
             using (LibreriaContext db = new LibreriaContext())
             {
-                Libro libriFromDb = db.Libri.Where(SingoloLibroNelDb => SingoloLibroNelDb.Id == id).Include(Libro => Libro.Genere).FirstOrDefault();
+                Libro libroFromDb = db.Libri.Where(SingoloLibroNelDb => SingoloLibroNelDb.Id == id).Include(Libro => Libro.Genere).FirstOrDefault();
 
-                LibreriaView modelForView = new LibreriaView();
+                ClienteView modelForView = new ClienteView();
 
-                modelForView.Libro = new Libro();
-                modelForView.Ordine = new Ordine();
-                modelForView.Genere = db.Genere.ToList();
+                modelForView.Libro = libroFromDb;
 
                 return View("Ordine", modelForView);
             }
@@ -75,7 +73,7 @@ namespace project_work_libreria.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Ordine(LibreriaView formData)
+        public IActionResult Ordine(ClienteView formData)
         {
             if (!ModelState.IsValid)
 
@@ -85,11 +83,11 @@ namespace project_work_libreria.Controllers
 
             using (LibreriaContext db = new LibreriaContext())
             {
-                formData.Ordine.Data = DateTime.Now;
+                formData.OrdineCliente.Data = DateTime.Now;
                 Libro libro = db.Libri.Where(SingoloLibroNelDb => SingoloLibroNelDb.Id == formData.Libro.Id).FirstOrDefault();
-                libro.Quantita = libro.Quantita - formData.Ordine.Quantita;
+                libro.Quantita = libro.Quantita - formData.OrdineCliente.Quantita;
 
-                db.Ordine.Add(formData.Ordine);
+                db.OrdineCliente.Add(formData.OrdineCliente);
                 db.SaveChanges();
             }
 
