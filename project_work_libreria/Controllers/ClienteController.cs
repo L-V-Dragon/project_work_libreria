@@ -46,5 +46,23 @@ namespace project_work_libreria.Controllers {
 
             }
         }
+
+        public IActionResult Ordine(int id)
+        {
+            using (LibreriaContext db = new LibreriaContext())
+            {
+                Libro libroTrovato = db.Libri
+                    .Where(SingoloLibroNelDb => SingoloLibroNelDb.Id == id)
+                    .Include(Libro => Libro.Genere)
+                    .FirstOrDefault();
+
+                if (libroTrovato != null)
+                {
+                    return View(libroTrovato);
+                }
+
+                return NotFound("Il libro con l'id cercato non esiste!")
+            }
+        }
     }
 }
