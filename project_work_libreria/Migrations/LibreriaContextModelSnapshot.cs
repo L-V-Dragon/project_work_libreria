@@ -36,7 +36,7 @@ namespace projectworklibreria.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Foprnitore");
+                    b.ToTable("Foprnitore", (string)null);
                 });
 
             modelBuilder.Entity("project_work_libreria.Models.Libro", b =>
@@ -59,7 +59,7 @@ namespace projectworklibreria.Migrations
 
                     b.HasIndex("OrdineId");
 
-                    b.ToTable("Libri");
+                    b.ToTable("Libri", (string)null);
                 });
 
             modelBuilder.Entity("project_work_libreria.Models.Ordine", b =>
@@ -83,7 +83,7 @@ namespace projectworklibreria.Migrations
 
                     b.HasIndex("FornitoreId");
 
-                    b.ToTable("Ordine");
+                    b.ToTable("Ordine", (string)null);
                 });
 
             modelBuilder.Entity("project_work_libreria.Models.Libro", b =>
