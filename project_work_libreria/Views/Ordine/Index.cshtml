@@ -1,8 +1,8 @@
-﻿@model LibreriaView
+﻿@model Ordine
 
 <div class="row">
     <div class="col-m-5">
-        <form asp-action="Create">
+        <form asp-action="">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Libro.Titolo" class="control-label"></label>
@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Libro.Trama" class="control-label"></label>
-                <input asp-for="Libro.Trama" class="form-control"/>
+                <input asp-for="Libro.Trama" class="form-control" />
                 <span asp-validation-for="Libro.Trama" class="text-danger"></span>
             </div>
             <div class="mb-3 col-4">
@@ -33,7 +33,7 @@
                     {
                         <option value="@categoria.Id">@categoria.Nome</option>
                     }
-                    
+
                     <span asp-validation-for="Libro.GenereId" class="text-danger"></span>
                 </select>
             </div>
@@ -48,11 +48,12 @@
                 <span asp-validation-for="Libro.Prezzo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Ordine.Quantita" class="control-label"></label>
-                <input asp-for="Ordine.Quantita" class="form-control" />
+                <label asp-for="Libro.Quantita" class="control-label"></label>
+                <input asp-for="Libro.Quantita" class="form-control" />
+                <span asp-validation-for="Libro.Quantita" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Acquista" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
