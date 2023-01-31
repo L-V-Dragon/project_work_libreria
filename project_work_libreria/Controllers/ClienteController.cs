@@ -61,7 +61,7 @@ namespace project_work_libreria.Controllers {
                     return View(libroTrovato);
                 }
 
-                return NotFound("Il libro con l'id cercato non esiste!")
+                return NotFound("Il libro con l'id cercato non esiste!");
             }
         }
     }
