@@ -1,0 +1,41 @@
+﻿
+
+<h1>Questa è la pagina dei dettagli</h1>
+
+<div id="libro_container"></div>
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+
+        const id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+        axios.get(`/api/Apiamministrazione/${id}`).then((res) => {
+            let libro = res.data;
+            console.log('libro trovato', libro);              
+            document.getElementById("libro_container").innerHTML +=
+                `
+                                    <div class=" p-2">
+                                          <div class="card post h-100 m-3">
+                                                <img src="${libro.foto}" class="card-img-top" alt="...">
+                                                <div class="card-body">
+                                                <h5 class="card-title">${libro.titolo}</h5>
+                                                        <p class="card-text">${libro.trama}</p>
+
+
+                                                        <span class="card-text">genere:
+                                                            ${libro.genere.nome}
+                                                    </span>
+                                                           <p class="card-text">Price: €${libro.prezzo}</p>
+                                                   <div class="text-center mb-3 mt-3">
+                                                    <a class="btn btn-primary  col-3" href="/" role="button">Home</a>
+                                                  </div>
+                                                 </div>
+                                                </div>
+                                    </div>
+                                `;
+        }
+        )
+
+    </script>
+}

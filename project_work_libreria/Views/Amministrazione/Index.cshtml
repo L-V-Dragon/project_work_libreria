@@ -30,15 +30,20 @@
             
         </tr>
     </thead>
-    <tbody>
+    <tbody id="Tabella" class="bg-secondary bg-opacity-50">
 
         @foreach (Libro libri in Model){
-        <tr>
+        <tr class="text-white">
             
             <td>@libri.Isbn</td>
             <td>@libri.Titolo</td>
             <td>@libri.Prezzo</td>
-            <td>@libri.Quantita</td>
+                    @if (libri.Quantita < 5) {
+                        <td class="text-danger">@libri.Quantita</td>
+                    }else{
+                    <td>@libri.Quantita</td>
+                    }
+                    
             <td>@libri.Like</td>
                     <td class="miei-buttons-post">
                         
@@ -67,8 +72,7 @@
     @section Scripts{
 
     <script type="text/javascript">
-        loadProdotti();
-        document.getElementById('input_search').addEventListener('keyup', searchProdotti);
+        document.getElementById('input_search').addEventListener('keyup', searchTabella);
     </script>
 }
 
