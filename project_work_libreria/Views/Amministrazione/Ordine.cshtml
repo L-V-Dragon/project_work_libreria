@@ -1,59 +1,75 @@
 ﻿@model LibreriaView
 
-<div class="row">
-    <div class="col-m-5">
-        <form asp-action="Ordine">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Libro.Titolo" class="control-label"></label>
-                <input asp-for="Libro.Titolo" class="form-control" />
-                <span asp-validation-for="Libro.Titolo" class="text-danger"></span>
+<table class="table">
+    <thead class="table-light">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Isbn</th>
+            <th scope="col">Titolo</th>
+            <th scope="col">Prezzo unitario</th>
+            <th scope="col">Quantità</th>
+            <th scope="col">Prezzo</th>
+            <th scope="col">Fornitore</th>
+        </tr>
+
+    </thead>
+    <tr>
+        <th scope="row">@Model.Libro.Id</th>
+        <td>@Model.Libro.Isbn</td>
+        <td>@Model.Libro.Titolo</td>
+        <td><span id="PrezzoLibro">@Model.Libro.Prezzo </span> €</td>
+        <td>
+            <div class="form-group col">
+                <input id="QuantitaLibri" class="form-control" type="number" placeholder="Quantità" aria-label="default input example">
+
             </div>
-            <div class="form-group">
-                <label asp-for="Libro.Autore" class="control-label"></label>
-                <input asp-for="Libro.Autore" class="form-control" />
-                <span asp-validation-for="Libro.Autore" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Libro.Isbn" class="control-label"></label>
-                <input asp-for="Libro.Isbn" class="form-control" />
-                <span asp-validation-for="Libro.Isbn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Libro.Trama" class="control-label"></label>
-                <input asp-for="Libro.Trama" class="form-control" />
-                <span asp-validation-for="Libro.Trama" class="text-danger"></span>
-            </div>
-            <div class="mb-3 col-4">
-                <label>Categoria:</label>
-                <option value""></option>
-                <select asp-for="Libro.GenereId" rows="10" class="d-block w-100">
-                    <option value=""></option>
-                    <span asp-validation-for="Libro.GenereId" class="text-danger"></span>
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Libro.Foto" class="control-label"></label>
-                <input asp-for="Libro.Foto" class="form-control" />
-                <span asp-validation-for="Libro.Foto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Libro.Prezzo" class="control-label"></label>
-                <input asp-for="Libro.Prezzo" class="form-control" />
-                <span asp-validation-for="Libro.Prezzo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Libro.Quantita" class="control-label"></label>
-                <input asp-for="Libro.Quantita" class="form-control" value="0" />
-                <span asp-validation-for="Libro.Quantita" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+        </td>
+        <td> <span id="TotaleParziale">@Model.Libro.Prezzo </span>€</td>
+        <td>
+            <select asp-for="@Model.Ordine.Fornitore.Name" rows="10" class="d-block w-200">
+                <option value=""></option>
+                <span asp-validation-for="@Model.Ordine.Fornitore.Name" class="text-danger"></span>
+            </select>
+        </td>
+       
+    </tr>
+    <tbody>
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+<span id="Totale">@Model.Libro.Prezzo </span>€
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div mb-5>
     <a asp-action="Index">Back to List</a>
 </div>
+
+
+
+@section Scripts{
+    <script type="text/javascript">
+
+        document.getElementById("QuantitaLibri").addEventListener("input", aggiornaPrezzo);
+
+
+    </script>
+    }
+
