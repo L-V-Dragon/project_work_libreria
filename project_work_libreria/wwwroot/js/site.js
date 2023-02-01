@@ -47,9 +47,9 @@ function loadProdotti(searchString) {
         <p class="card-text">Trama: ${libro.trama}</p>
         <h4 class="card-text">Genere: ${libro.genere.nome}</h4>
         <h4 class="card-text">Prezzo: ${libro.prezzo}$</h4>
-        <a class="btn btn-warning btn-lg " href="Dettagli/${libro.id}">
+        <a class="btn btn-warning btn-lg " href="/Cliente/Dettagli/${libro.id}">
         <span class="glyphicon glyphicon-book"></span> Dettagli</a>
-        <a href="Ordine/${libro.id}" class="btn btn-info btn-lg ">
+        <a href="/Cliente/Ordine/${libro.id}" class="btn btn-info btn-lg ">
         <span class="glyphicon glyphicon-tag"></span> Ordina</a>
         
         </div>
@@ -152,4 +152,15 @@ window.onload =async function afterWebPageLoad() {
     //    });
     //});
 
+}
+
+
+
+
+function aggiornaPrezzo() {
+    let quantita = document.getElementById("QuantitaLibri").value;
+    let prezzo = document.getElementById("PrezzoLibro").innerHTML;
+    debugger;
+    document.getElementById("TotaleParziale").innerHTML = prezzo * quantita;
+    document.getElementById("Totale").innerHTML = prezzo * quantita;
 }

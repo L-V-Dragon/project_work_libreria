@@ -16,8 +16,11 @@
                     <div class="row ">
                         <!-- ----------- Immagine ------------->
                         <div class="col ">
-                            <svg class=" bd-placeholder-img img-fluid m-3 " width="70%" height="100" xmlns="" role="img" aria-label="Placeholder: Image" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image</text></svg>
-
+                            
+                            <picture class="product__img col img-fluid m-3">
+                                <source srcset="" width="70%" height="100" />
+                                <img bd-placeholder-img img-fluid m-3 " width="70%" height="100" src="@Model.Libro.Foto" alt="foto" />
+                            </picture>
                         </div>
                         <!-- ----------Fine immagine ----------->
                         <!-- -------------- Contenitore dettagli ordine ------------------ -->
@@ -28,10 +31,10 @@
 
                                 </div>
                                 <div class="row">
-                                    <h5 class="card-title mx-0 " style="text-align:start "> <b>Titolo</b> </h5>
-                                    <h5 class="card-title col " style="text-align:start">Autore</h5>
+                                    <h5 class="card-title mx-0 " style="text-align:start "> <b>@Model.Libro.Titolo</b> </h5>
+                                    <h5 class="card-title col " style="text-align:start">@Model.Libro.Autore</h5>
                                     <div class="col"></div>
-                                    <div class="col-2"> <p>   15 €</p></div>
+                                    <div class="col-2"> <span id="PrezzoLibro">@Model.Libro.Prezzo </span> €</div>
                                 </div>
                                 <div class="row ">
                                     <p class="card-text col" style="text-align:start">
@@ -43,14 +46,15 @@
                                     </p>
                                     <div class="button col">
                                         <div class="row">
-                                          
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash col" viewBox="0 0 16 16">
+                                            <div class="col"></div>
+                                            @*Se vogliamo aggiungere la possibilità di comprare piu di un libro e poterlo cancellare*@
+                                            @*<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash col" viewBox="0 0 16 16">
                                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
                                                 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-                                            </svg>
+                                            </svg>*@
                                            <div class="form-group col">
-                                                <input class="form-control" type="number" placeholder="Quantità" aria-label="default input example">
-                                               
+                                                <input id="QuantitaLibri" class="form-control" type="number" placeholder="Quantità" aria-label="default input example">
+                                          
                                             </div>
                                           
 
@@ -78,8 +82,10 @@
                     <table class="table table-borderless">
                         <thead>
                             <tr>
-                                <th scope="col">Subtotale(Numero quantita)</th>
-                                <th scope="col">15 €</th>
+                                <th scope="col">Subtotale()</th>
+                                <th scope="col">
+                                    <span id="TotaleParziale">@Model.Libro.Prezzo </span>€
+                                </th>
 
                             </tr>
                         </thead>
@@ -98,7 +104,7 @@
                             </tr>
                             <tr>
                                 <th scope="col">Totale</th>
-                                <th scope="col">15 €</th>
+                                <th scope="col"> <span id="Totale">@Model.Libro.Prezzo </span>€ </th>
 
                             </tr>
                         </tbody>
@@ -123,5 +129,16 @@
 <div mb-5>
     <a asp-action="Index">Back to List</a>
 </div>
+
+
+
+    @section Scripts{
+        <script type="text/javascript">
+
+            document.getElementById("QuantitaLibri").addEventListener("input", aggiornaPrezzo);
+
+
+        </script>
+    }
 
 </body>
