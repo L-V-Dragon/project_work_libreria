@@ -69,3 +69,10 @@ body {
     left: 50%;
     transform: translate(0%, 0%);
 }
+.nav-link{
+    color:whitesmoke;
+}
+
+.form-floating > .form-control{
+    height: calc(3.5rem + 20px);
+}
