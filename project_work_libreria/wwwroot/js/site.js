@@ -64,7 +64,6 @@ function loadProdotti(searchString) {
 `;
             });
             document.getElementById("spinner-loader").classList.add('d-none');
-            cuore();
         }
     }).catch((error) => {
         console.log(error);
