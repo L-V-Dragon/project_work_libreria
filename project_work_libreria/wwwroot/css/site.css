@@ -10,13 +10,8 @@ html {
   }
 }
 
-html {
-  position: relative;
-  height: 100%;
-}
 
 body {
-    margin-bottom: 60px;
     background-image: url(https://th.bing.com/th/id/R.91b4ffc0495050234722a38cc9fa2867?rik=PKi9hX9OTHGdBQ&pid=ImgRaw&r=0)
 }
 
@@ -24,13 +19,6 @@ body {
     background-color:saddlebrown;
     opacity:60%;
 }
-
-
-* {
-    box-sizing: border-box;
-}
-
-
 .miei-buttons-post {
     display: flex;
     justify-content: space-between;
@@ -45,7 +33,7 @@ body {
 
 
 .myClass {
-    position: absolute;
+    position: fixed;
     line-height: 60px;
     bottom: 0px;
     width: 100%;
@@ -53,108 +41,31 @@ body {
     left: 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* -----------------------cuore------------------------------
-*/
-
-#container {
-    display: flex;
-    /* flex-direction: column; */
-    justify-content: center;
-    align-items: center;
-    width: 5px;
-    height: auto;
-    padding: 0px 0px;
+/* css per animazione del cuore */
+.heart {
+    width: 100px;
+    height: 100px;
+    background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat;
+    background-position: 0 0;
+    cursor: pointer;
+    transition: background-position 1s steps(28);
+    transition-duration: 0s;
 }
 
-.heart-like-button {
-    position: relative;
-    width: 5px;
-    height: auto;
+    .heart.is-active {
+        transition-duration: 1s;
+        background-position: -2800px 0;
+    }
+
+// BASIC
+body {
+    background: linear-gradient(135deg, #121721 0%, #000000 100%) fixed;
+    color: #FFF;
+    font: 300 16px/1.5 "Open Sans", sans-serif;
 }
 
-    .heart-like-button:before {
-        position: absolute;
-        top: 0;
-        left: 80px;
-        transform: rotate(-45deg);
-        transform-origin: 0 100%;
-        width: 80px;
-        height: 125px;
-        border-radius: 40px 40px 0 0;
-        background-color: #574136;
-        content: "";
-        cursor: pointer;
-        transition: background .4s;
-    }
-
-    .heart-like-button:after {
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: rotate(45deg);
-        transform-origin: 100% 100%;
-        width: 80px;
-        height: 125px;
-        border-radius: 40px 40px 0 0;
-        background-color: #574136;
-        content: "";
-        cursor: pointer;
-        transition: background .4s;
-    }
-
-h1 {
-    margin: 0;
-    color: #574136;
-    font-size: 3rem;
-    letter-spacing: 1px;
-    text-align: center;
+.stage {
+    top: 50%;
+    left: 50%;
+    transform: translate(0%, 0%);
 }
-
-.heart-like-button.liked::before,
-.heart-like-button.liked::after {
-    background-color: #d65076;
-}
-
-.heart-like-button.liked {
-    animation: liked .4s ease;
-}
-
-@keyframes liked {
-    0% {
-        transform: scale(.8);
-    }
-
-    50% {
-        transform: scale(1.1);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-@media screen and (max-width: 480px) {
-    #container {
-        height: auto;
-    }
-
-    h1 {
-        font-size: 2.5rem;
-    }
-}
-
-/*----------------------------------------------------------------------------------------*/
