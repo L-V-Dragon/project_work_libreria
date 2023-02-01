@@ -55,7 +55,7 @@ p {
     white-space: normal;
 }
 
-p, h1, h3, h4, h5, h6 {
+h1, h3, h4, h5, h6 {
     overflow-wrap: break-word;
 }
 
@@ -111,9 +111,6 @@ body {
     .button:is(:hover,:focus) {
         background-color: var(--clr-primary-500);
     }
-
-
-
 /*style product*/
 .product {
     --content-padding: 1.5rem;
@@ -130,15 +127,16 @@ body {
     .product {
         --content-padding: 2rem;
         grid-template-columns: 1fr 1fr;
+        padding: var(--content-padding);
     }
 }
 
 .product__content {
     display: grid;
     gap: var(--content-spacing);
-    padding: var(--content-padding);
-}
+    padding: 5px;
 
+}
 .product__genere {
     font-size: 0.8125rem;
     letter-spacing: 5px;
@@ -181,4 +179,9 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-25%, 0%);
+}
+
+.myLikes {
+    transform: translate(-100%, 0%);
+    font-size:18px;
 }
