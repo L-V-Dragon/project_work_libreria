@@ -51,6 +51,7 @@ function loadProdotti(searchString) {
         <span class="glyphicon glyphicon-book"></span> Dettagli</a>
         <a href="Ordine/${libro.id}" class="btn btn-info btn-lg ">
         <span class="glyphicon glyphicon-tag"></span> Ordina</a>
+        
         </div>
         </div>
         </div>
@@ -92,11 +93,11 @@ function loadTabella(searchString) {
             <td>${libro.isbn}</td>
             <td>${libro.titolo}</td>
             <td>${libro.prezzo}</td>
-            <td>${libro.quantita}</td>
+            <td class="js">${libro.quantita}</td>
             <td>${libro.like}</td>
                     <td class="miei-buttons-post">
                         
-                        <a class="btn btn-warning btn-sm" href="/Update/${libro.id}">
+                        <a class="btn btn-warning btn-sm" href="Update/${libro.id}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polygon points="14 2 18 6 7 17 3 17 3 13 14 2"></polygon><line x1="3" y1="22" x2="21" y2="22"></line></svg>
                         </a>
                             <a type="submit" href="Amministrazione/Delete/${libro.id}" class="btn btn-danger btn-sm">
@@ -112,22 +113,43 @@ function loadTabella(searchString) {
                     </td>
         </tr>
 
-`;
+`; resetcolor()
             });
-        })
+        }) 
         .catch((error) => {
             console.log(error);
         });
 }
-function cuore() {
-    const button = document.querySelector(".heart-like-button");
 
-    button.addEventListener("click", () => {
-        if (button.classList.contains("liked")) {
-            button.classList.remove("liked");
-        } else {
-            button.classList.add("liked");
-        }
-    });
+function resetcolor() {
+
+    let list = document.getElementsByClassName("js");
+
+    for (let i = 0; i < list.length; i++) {
+        if (list[i].innerHTML < 5) {
+            list[i].classList.add("text-danger");
+        }       
+    }
 }
-//--------
+
+function changeClass(event) {
+    event.currentTarget.classList.toggle("is-active");
+}
+
+window.onload =async function afterWebPageLoad() {
+    await new Promise(r => setTimeout(r, 250));
+
+    let likes = document.getElementsByClassName("heart");
+
+    for (let i = 0; i < likes.length; i++) {
+
+        likes[i].addEventListener("click", changeClass, false);
+    }
+
+    //$(function () {
+    //    $(".heart").on("click", function () {
+    //        $(this).toggleClass("is-active");
+    //    });
+    //});
+
+}

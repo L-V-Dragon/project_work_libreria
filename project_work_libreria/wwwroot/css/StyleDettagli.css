@@ -8,31 +8,33 @@
     --fw-regular: 500;
     --fw-bold: 700;
 }
- 
+
 *,
 *::before,
-::after{
+::after {
     box-sizing: border-box;
 }
 
-*{
-    margin:0;
-
+* {
+    margin: 0;
 }
 
-
+img {
+    padding: 10px;
+}
 
 
 body {
-    height:100%;
-}
-
-html{
     height: 100%;
 }
 
-body{line-height:1.7;
-     -webkit-font-smoothing: antialiased;
+html {
+    height: 100%;
+}
+
+body {
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
 }
 
 img,
@@ -44,112 +46,142 @@ svg {
     max-width: 100%;
 }
 
-input,button,textarea,select{
-    font:inherit;
+input, button, textarea, select {
+    font: inherit;
 }
 
+p {
+    word-break: break-all;
+    white-space: normal;
+}
 
-p, h1, h3, h4, h5, h6 {
+h1, h3, h4, h5, h6 {
     overflow-wrap: break-word;
 }
 
-h1,h2,h3{
+h1, h2, h3 {
     line-height: 1;
 }
 
 /*view generale*/
 
-body{
+body {
     font-weight: var(--fw-regular);
-    font-size:0.875rem;
+    font-size: 0.875rem;
     color: var(--clr-neutral-400);
     background-color: var(--clr-secondary-200);
-
-    display:grid;
-    place-content:center;
-    margin:1rem;
+    display: grid;
+    place-content: center;
+    margin: 1rem;
 }
 
 
-.flex-group{
-    display:flex;
+.flex-group {
+    display: flex;
     gap: 1rem;
-    flex-wrap:wrap;
-    align-items:center;
+    flex-wrap: wrap;
+    align-items: center;
 }
 /*button */
 
-.button{
-    cursor:pointer;
-    text-decoration:none;
-    display:inline-flex;
-    justify-content:center;
-    align-items:center;
-    gap:0.75rem;
-
-    border:0;
-    border-radius:0.5rem;
-    padding:0.75em 1.5em;
+.button {
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    border: 0;
+    border-radius: 0.5rem;
+    padding: 0.75em 1.5em;
     background-color: var(--clr-primary-400);
-    color:var(--clr-neutral-100);
-    font-weight:var(--fw-bold);
-    font-size:0.925rem;
-}
-.button[data-icon="shopping-cart"]::before{
-    content:"";
-    background-image:url();
-    width:15px;
-    height:16px;
-
+    color: var(--clr-neutral-100);
+    font-weight: var(--fw-bold);
+    font-size: 0.925rem;
 }
 
+    .button[data-icon="shopping-cart"]::before {
+        content: "";
+        background-image: url();
+        width: 15px;
+        height: 16px;
+    }
 
-.button:is(:hover,:focus){
-    background-color: var(--clr-primary-500);
-}
 
-
-
+    .button:is(:hover,:focus) {
+        background-color: var(--clr-primary-500);
+    }
 /*style product*/
-.product{
-
+.product {
     --content-padding: 1.5rem;
-    --content-spacing:1rem;
-
-    display:grid;
-    background-color:var(--clr-neutral-100);
-    border-radius:0.5rem;
-    overflow:hidden;
-    max-width:600px;
+    --content-spacing: 1rem;
+    display: grid;
+    background-color: var(--clr-neutral-100);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    max-width: 800px;
+    box-shadow: 0px 0px 0px 20px rgba(74,74,74,0.8);
 }
 
-@media(min-width:600px){
-    .product{
-        --content-padding:2rem;
-        grid-template-columns:1fr 1fr;
+@media(min-width:600px) {
+    .product {
+        --content-padding: 2rem;
+        grid-template-columns: 1fr 1fr;
+        padding: var(--content-padding);
     }
 }
-.product__content{
+
+.product__content {
     display: grid;
     gap: var(--content-spacing);
-    padding: var(--content-padding);
-}
+    padding: 5px;
 
-.product__genere{
-    font-size:0.8125rem;
+}
+.product__genere {
+    font-size: 0.8125rem;
     letter-spacing: 5px;
-    text-transform:uppercase;
-
-}
-.product__title{
-    font-size:2rem;
-    color:var(--clr-neutral-900);
-    
+    text-transform: uppercase;
 }
 
-.product__price{
-    font-size:2rem;
-    color:var(--clr-primary-400);
+.product__title {
+    font-size: 2rem;
+    color: var(--clr-neutral-900);
 }
 
+.product__price {
+    font-size: 2rem;
+    color: var(--clr-primary-400);
+}
 
+/* css per animazione del cuore */
+.heart {
+    width: 100px;
+    height: 100px;
+    background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat;
+    background-position: 0 0;
+    cursor: pointer;
+    transition: background-position 1s steps(28);
+    transition-duration: 0s;
+}
+.heart.is-active {
+    transition-duration: 1s;
+    background-position: -2800px 0;
+}
+
+// BASIC
+body {
+    background: linear-gradient(135deg, #121721 0%, #000000 100%) fixed;
+    color: #FFF;
+    font: 300 16px/1.5 "Open Sans", sans-serif;
+}
+
+.stage {
+    top: 50%;
+    left: 50%;
+    transform: translate(-25%, 0%);
+}
+
+.myLikes {
+    transform: translate(-100%, 0%);
+    font-size:18px;
+}
