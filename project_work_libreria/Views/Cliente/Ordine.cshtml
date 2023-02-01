@@ -1,59 +1,127 @@
 ﻿@model ClienteView
 
-<div class="row">
-    <div class="col-m-5">
-        <form asp-action="Ordine">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Libro.Titolo" class="control-label"></label>
-                <input asp-for="Libro.Titolo" class="form-control" />
-                <span asp-validation-for="Libro.Titolo" class="text-danger"></span>
+<body class="p-3 m-0 border-0 bd-example">
+
+    <!-- Example Code -->
+
+    <div class=" container ">
+        <div class="row">
+            <div class="m-3">
+                <span id=heart><i class="fa fa-heart-o" aria-hidden="true"></i> </span>
+                <h2>Il tuo ordine</h2> <div id='heart' class='button'></div>
             </div>
-            <div class="form-group">
-                <label asp-for="Libro.Autore" class="control-label"></label>
-                <input asp-for="Libro.Autore" class="form-control" />
-                <span asp-validation-for="Libro.Autore" class="text-danger"></span>
+            <!-- Contenitore immg e dettagli ordine -->
+            <div class="container col-8 border border-light " style="height: fit-content;">
+                <div style="max-width: 650px;">
+                    <div class="row ">
+                        <!-- ----------- Immagine ------------->
+                        <div class="col-md-4 ">
+                            <svg class=" bd-placeholder-img img-fluid m-3 " width="70%" height="100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"></rect><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image</text></svg>
+
+                        </div>
+                        <!-- ----------Fine immagine ----------->
+                        <!-- -------------- Contenitore dettagli ordine ------------------ -->
+                        <div class="col-md-8">
+                            <div class="card-body mt-3">
+                                <div class="row">
+                                    <div class="col mb-1 "> Libro</div>
+
+                                </div>
+                                <h5 class="card-title">Titolo</h5>
+                                <div class="row">
+                                    <h5 class="card-title col">Autore</h5>
+                                    <div class="col"></div>
+                                    <div class="col-2"> <p>   15 €</p></div>
+                                </div>
+                                <div class="row ">
+                                    <p class="card-text col">
+                                        <small class="text-muted">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                            </svg> Disp.immediata
+                                        </small>
+                                    </p>
+                                    <div class="button col">
+                                        <div class="row">
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash col" viewBox="0 0 16 16">
+                                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                            </svg>
+
+                                            <select class=" select col " aria-label="Default select example">
+                                                <option selected>Quantità</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                </div>
+
+                            </div>
+                            <!-- --------------------Fine-------------------- -->
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ----------Riepilogo ordine ------------------->
+
             </div>
-            <div class="form-group">
-                <label asp-for="Libro.Isbn" class="control-label"></label>
-                <input asp-for="Libro.Isbn" class="form-control" />
-                <span asp-validation-for="Libro.Isbn" class="text-danger"></span>
+            <div class="card col-4" style="width: 24rem;">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">Riepilogo ordine</h6>
+
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">Subtotale(Numero quantita)</th>
+                                <th scope="col">15 €</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                                <td>Spese di spedizione</td>
+                                <td>3,50 €</td>
+
+                            </tr>
+                            <tr>
+
+                                <td>Sconto spese di spedizione</td>
+                                <td>-3,50 €</td>
+
+                            </tr>
+                            <tr>
+                                <th scope="col">Totale</th>
+                                <th scope="col">15 €</th>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <button class="button" data-icon="shopping-cart">Add to Cart</button>
+
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Libro.Trama" class="control-label"></label>
-                <input asp-for="Libro.Trama" class="form-control" />
-                <span asp-validation-for="Libro.Trama" class="text-danger"></span>
-            </div>
-            <div class="mb-3 col-4">
-                <label>Categoria:</label>
-                <option value""></option>
-                <select asp-for="Libro.GenereId" rows="10" class="d-block w-100">
-                    <option value=""></option>
-                    <span asp-validation-for="Libro.GenereId" class="text-danger"></span>
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Libro.Foto" class="control-label"></label>
-                <input asp-for="Libro.Foto" class="form-control" />
-                <span asp-validation-for="Libro.Foto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Libro.Prezzo" class="control-label"></label>
-                <input asp-for="Libro.Prezzo" class="form-control" />
-                <span asp-validation-for="Libro.Prezzo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Libro.Quantita" class="control-label"></label>
-                <input asp-for="Libro.Quantita" class="form-control" value="0"/>
-                <span asp-validation-for="Libro.Quantita" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+    <!---------------- -->
+
+
+
+
+
+
 
 <div mb-5>
     <a asp-action="Index">Back to List</a>
 </div>
+
+</body>
