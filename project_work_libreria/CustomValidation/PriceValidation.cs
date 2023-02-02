@@ -6,7 +6,7 @@ namespace project_work_libreria.CustomValidation
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-            double FieldValue=0;
+            double FieldValue=(double)value;
             try
             {
                 if (FieldValue < 0)

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using project_work_libreria.Database;
 using project_work_libreria.Models;
 using System.Diagnostics;
 

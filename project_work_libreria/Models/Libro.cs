@@ -32,6 +32,7 @@ namespace project_work_libreria.Models {
         public string Foto { get; set; }
 
         [Required(ErrorMessage = "Questo campo è obbligatorio")]
+        [PriceValidation]
         public double Prezzo { get; set; }
 
         public int? Quantita { get; set; }
@@ -40,12 +41,9 @@ namespace project_work_libreria.Models {
 
         public int? GenereId { get; set; }
         public Genere? Genere { get; set; }
+        public List<Ordine>? Ordine { get; set; }
+        public List<OrdineCliente>? OrdineCliente { get; set; }
 
         public Libro() { }
-
-        public double StampaPrezzo()
-        {
-            return Math.Round(Prezzo, 2);
-        }
     }
 }

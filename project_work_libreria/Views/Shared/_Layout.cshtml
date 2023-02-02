@@ -8,30 +8,26 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/project_work_libreria.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body class="bg-main ">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
+        <nav class="text-white bg-nav text-center">
+            <div class="container-fluid my-4 ">
 
-                <a href="#">
-                <img src="https://i.pinimg.com/originals/7d/e1/52/7de1524dc6e04749931920474056b7c0.png" alt="Logo" class="mx-4" height="40">
-                </a>
-                
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">La Casa dei Libri</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
+                <div class="row">
+                    <div class="col-2 col-md-2 align-content-center">
+                        <a class="" href="#">
+                            <img src="https://i.pinimg.com/originals/7d/e1/52/7de1524dc6e04749931920474056b7c0.png" alt="Logo" class="m-4 bg-white rounded-circle" height="80">
+                        </a>
+                    </div>
+                    <div class="col-10 col-md-8 mt-4">
+                        <h1>
+                            La Casa Dei Libri
+                        </h1>
+                    </div>
+
+                    <div class="col-12 col-md-2 ">
+                        <partial name="_LoginPartial" />
+                    </div>
                 </div>
             </div>
         </nav>
@@ -41,11 +37,14 @@
             @RenderBody()
         </main>
     </div>
+    <!--
+        Sistemare il footer si sovrappone alla pagina non rimane nella parte bassa
+        ho provato di tutto questa è una richiesta di aiuto fixatelo vi prego.
+        Pedra 31/01/2023 01:12 feat. Lorenzo
+    -->
+    <footer class="border-top myClass bg-secondary bg-opacity-75 text-white">
 
-    <footer class="border-top footer text-muted mt-5 ">
-        <div class="container">
-            &copy; 2023 - project_work_libreria - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+        LaCasaDeiLibri - Via Generation 07 - Colombo Demarku Pedrazzini Viotti Volpin - &copy; 2023
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
@@ -55,9 +54,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+@* QUA IL NOME PORTEREBBE DIRETTAMENTE ALLA HOME
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">La Casa dei Libri</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>*@

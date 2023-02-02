@@ -1,0 +1,94 @@
+﻿@model LibreriaView
+<form asp-controller="Amministrazione" asp-action="Ordine" method="post">
+    <input asp-for="Libro.Isbn" type="hidden" value="@Model.Libro.Isbn" class="form-control">
+    <input asp-for="Libro.Foto" type="hidden" value="@Model.Libro.Foto" class="form-control">
+    <input asp-for="Libro.Trama" type="hidden" value="@Model.Libro.Trama" class="form-control">
+    <input asp-for="Libro.Id" type="hidden" value="@Model.Libro.Id" class="form-control">
+    <input asp-for="Libro.Autore" type="hidden" value="@Model.Libro.Autore" class="form-control">
+    <input asp-for="Libro.Titolo" type="hidden" value="@Model.Libro.Titolo" class="form-control">
+
+    <input asp-for="Libro.Quantita" id="QuantitaMagazzino" type="hidden" value="@Model.Libro.Quantita" class="form-control">
+    <table class="table table-striped-columns">
+        <thead class="table-light table-striped-columns">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Isbn</th>
+                <th scope="col">Titolo</th>
+                <th scope="col">Prezzo unitario</th>
+                <th scope="col">Quantità</th>
+                <th scope="col">Prezzo</th>
+                <th scope="col">Fornitore</th>
+            </tr>
+
+        </thead>
+        <tbody class="table-striped-columns mb-3">
+            <tr>
+                <th scope="row">@Model.Libro.Id</th>
+                <td>@Model.Libro.Isbn</td>
+                <td>@Model.Libro.Titolo</td>
+                <td><span id="PrezzoLibro">@Model.Libro.Prezzo </span> €</td>
+                <td class="col-2">
+
+                    <input id="QuantitaLibri" min="1" asp-for="Ordine.Quantita" class="form-control" type="number" placeholder="Quantità" aria-label="default input example">
+
+
+                </td>
+                <td> <span id="TotaleParziale">@Model.Libro.Prezzo </span>€</td>
+                <td>
+
+                    <option value""></option>
+                    <select asp-for="@Model.Ordine.FornitoreId" rows="10" class="d-block w-100">
+                        <option value=""></option>
+                        @foreach (Fornitore fornitore in Model.Fornitore) {
+                            <option value="@fornitore.Id">@fornitore.Name</option>
+                        }
+
+                        <span asp-validation-for="@Model.Ordine.FornitoreId" class="text-danger"></span>
+                    </select>
+                </td>
+
+            </tr>
+
+
+        </tbody>
+
+    </table>
+
+
+
+    <div>
+
+        <h3>Totale ordine: <span id="Totale">@Model.Libro.Prezzo </span>€ </h3>
+    </div>
+
+    <button type="submit" class="btn btn-info btn-lg  ">
+        <span class="glyphicon glyphicon-tag"></span> Ordina
+    </button>
+
+
+</form>
+
+
+
+
+
+
+
+
+
+
+<div mb-5>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+
+@section Scripts{
+    <script type="text/javascript">
+
+        document.getElementById("QuantitaLibri").addEventListener("input", aggiornaPrezzo);
+
+
+    </script>
+    }
+

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.SqlServer.Server;
 using project_work_libreria.Database;
 using project_work_libreria.Models;
 
@@ -72,7 +73,9 @@ namespace project_work_libreria.Controllers
             {
                 if (formdata.Libro.Like == null) {
                     formdata.Libro.Like = 0;
+                    
                 }
+                formdata.Libro.Prezzo= ((int)(formdata.Libro.Prezzo*100)/100.00);
                 db.Libri.Add(formdata.Libro);
                 db.SaveChanges();
             }
@@ -127,7 +130,7 @@ namespace project_work_libreria.Controllers
                 {
                     libroDaAggiornare.Titolo = formData.Libro.Titolo;
                     libroDaAggiornare.Trama = formData.Libro.Trama;
-                    libroDaAggiornare.Prezzo = formData.Libro.Prezzo;
+                    libroDaAggiornare.Prezzo = formData.Libro.Prezzo = ((int)(formData.Libro.Prezzo * 100) / 100.00); ;
                     libroDaAggiornare.GenereId = formData.Libro.GenereId;
                     libroDaAggiornare.Quantita = formData.Libro.Quantita;
                     libroDaAggiornare.Foto = formData.Libro.Foto;
@@ -144,10 +147,46 @@ namespace project_work_libreria.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult Ordine(int id)
+        {
+            using (LibreriaContext db = new LibreriaContext())
+            {
+                Libro libroFromDb = db.Libri.Where(SingoloLibroNelDb => SingoloLibroNelDb.Id == id).Include(Libro => Libro.Genere).FirstOrDefault();
+                List<Fornitore> fornitoreFromDb = db.Fornitore.ToList();
+                LibreriaView modelForView = new LibreriaView();
 
+                modelForView.Libro = libroFromDb;
+                modelForView.Fornitore= fornitoreFromDb;
+                return View("Ordine", modelForView);
+            }
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Ordine(LibreriaView formData)
+        {
+            if (!ModelState.IsValid)
 
+            {
+                return View(formData);
+            }
 
+            using (LibreriaContext db = new LibreriaContext())
+            {
+                Libro libro = db.Libri.Where(SingoloLibroNelDb => SingoloLibroNelDb.Id == formData.Libro.Id).FirstOrDefault();
+                formData.Ordine.Data = DateTime.Now;
+                formData.Ordine.Prezzo = libro.Prezzo * formData.Ordine.Quantita;
+                formData.Ordine.Prezzo = ((int)(formData.Ordine.Prezzo * 100) / 100.00);
+                libro.Quantita = libro.Quantita + formData.Ordine.Quantita;
+                formData.Ordine.ListaLibri = new List<Libro> { libro };
+                libro.Ordine = new List<Ordine> { formData.Ordine };
+                db.Ordine.Add(formData.Ordine);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
 
     }
 }
