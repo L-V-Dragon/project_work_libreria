@@ -25,30 +25,88 @@
             console.log('libro trovato', libro);
             document.getElementById("main").innerHTML +=
                 `
-                                <article class="product">
-                <picture class="product__img">
-                    <source srcset="" media="(min-width:800px)" />
-                        <img src="${libro.foto}" alt="foto" />
-                </picture>
-                <div class="product__content">
+                        <!-- partial:index.partial.html -->
+        <div class="cover">
+          <div class="book">
+          <label for="page-1"  class="book__page book__page--1">
+                    <img src="${libro.foto}" alt="imagine Libro">
+          </label>
 
+          <label for="page-2" class="book__page book__page--4">
+            <div class="page__content">
+              <h1 class="page__content-title">Trama</h1>
+              <div class="page__content-blockquote">
+                        <p class="page__content-blockquote-text">${libro.trama} </p>
 
-                        <p class="product__genere">${libro.genere.nome}</p>
+              </div>
+              <div class="page__number">3</div>
+            </div>
+          </label>
 
-                        <h1 class="product__title">${libro.titolo}</h1>
+          <!-- Resets the page -->
+          <input type="radio" name="page" id="page-1"/>
 
-                   <p> ${libro.trama}</p>
-                        <div class="flex-group">
-                        <p class="product__price">${libro.prezzo} €</p>
-                                                <div class="stage col-4 m-0">
-                <div class="heart"></div>
+          <!-- Goes to the second page -->
+          <input type="radio" name="page" id="page-2"/>
+          <label class="book__page book__page--2">
+            <div class="book__page-front">
+              <div class="page__content">
+                                <h1 class="page__content-book-title">${libro.titolo}</h1>
+                        <h2 class="page__content-author">${libro.autore}</h2>
+
+                <p class="page__content-credits">
+
+                  <span></span>
+                </p>
+
+                <p class="page__content-credits">
+
+                  <span></span>
+                </p>
+
+                <div class="page__content-copyright">
+                  <p>Genere:</p>
+                          <p>${libro.genere.nome}</p>
                 </div>
-                        <span class="myLikes">Likes: ${libro.like}</span>
-                        </div>
-                        <button class="button text-center">Compra ora</button>
-                  </div>
+              </div>
+            </div>
+            <div class="book__page-back">
+              <div class="page__content">
+                <h1 class="page__content-title"></h1>
+                <table class="page__content-table">
+                  <tr>
+                            <td align="left">Like</td><td align="left"></td><td align="right">  <span class="myLikes">Likes: ${libro.like}</span> </td>
+                  </tr>
+                  <tr>
+                            <td align="left"><div class="heart"></div></td><td align="left"></td><td align="right"></td>
+                  </tr>
+                          <tr>
+                                    <td align="left">${libro.prezzo} €</td><td align="left"></td><td align="right"></td>
+                          </tr>
+                  <tr>
+                    <td align="left"> Compra ora! </td><td align="left"></td><td align="right"></td>
+                  </tr>
+                  <tr>
+                            <td align="left"> <button class="button text-center">Compra ora</button> </td><td align="left"></td><td align="right"></td>
+                  </tr>
+                  
+                </table>
 
-                </article>
+                <div class="page__number">2</div>
+              </div>
+            </div>
+          </label>
+        </div>
+        </div>
+
+
+
+
+
+
+
+
+
                                         `;
                 })
         
