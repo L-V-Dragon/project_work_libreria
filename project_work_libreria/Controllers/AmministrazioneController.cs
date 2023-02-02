@@ -151,12 +151,22 @@ namespace project_work_libreria.Controllers
         public IActionResult Ordine(int id)
         {
             using (LibreriaContext db = new LibreriaContext())
+
             {
-                Libro libroFromDb = db.Libri.Where(SingoloLibroNelDb => SingoloLibroNelDb.Id == id).Include(Libro => Libro.Genere).FirstOrDefault();
+                List<Fornitore> categoriesFromDb = db.Fornitore.ToList<Fornitore>();
+
+                Libro libroFromDb = db.Libri
+                    .Where(SingoloLibroNelDb => SingoloLibroNelDb.Id == id)
+                    .Include(Libro => Libro.Genere)
+                    .FirstOrDefault();
 
                 LibreriaView modelForView = new LibreriaView();
 
                 modelForView.Libro = libroFromDb;
+
+                modelForView.Fornitore = categoriesFromDb;
+               
+
 
                 return View("Ordine", modelForView);
             }

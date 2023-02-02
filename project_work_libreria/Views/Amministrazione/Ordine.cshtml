@@ -1,7 +1,7 @@
 ﻿@model LibreriaView
 
-<table class="table">
-    <thead class="table-light">
+<table class="table table-striped-columns">
+    <thead class="table-light table-striped-columns">
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Isbn</th>
@@ -13,38 +13,48 @@
         </tr>
 
     </thead>
+    <tbody class="table-striped-columns mb-3">
     <tr>
         <th scope="row">@Model.Libro.Id</th>
         <td>@Model.Libro.Isbn</td>
         <td>@Model.Libro.Titolo</td>
         <td><span id="PrezzoLibro">@Model.Libro.Prezzo </span> €</td>
-        <td>
-            <div class="form-group col">
+        <td class="col-2">
+            
                 <input id="QuantitaLibri" class="form-control" type="number" placeholder="Quantità" aria-label="default input example">
 
-            </div>
+           
         </td>
         <td> <span id="TotaleParziale">@Model.Libro.Prezzo </span>€</td>
         <td>
-            <select asp-for="@Model.Ordine.Fornitore.Name" rows="10" class="d-block w-200">
-                <option value=""></option>
-                <span asp-validation-for="@Model.Ordine.Fornitore.Name" class="text-danger"></span>
-            </select>
+                
+                <option value""></option>
+                <select asp-for="@Model.Ordine.FornitoreId" rows="10" class="d-block w-100">
+                    <option value=""></option>
+                    @foreach (Fornitore fornitore in Model.Fornitore)
+                    {
+                        <option value="@fornitore.Id">@fornitore.Name</option>
+                    }
+                    
+                    <span asp-validation-for="@Model.Ordine.FornitoreId" class="text-danger"></span>
+                </select>
         </td>
        
     </tr>
-    <tbody>
+
+   
     </tbody>
+    
 </table>
 
 
 
 
+<div style="align-self:flex-start">
 
+    <h3 ">Totale: <span id="Totale">@Model.Libro.Prezzo </span>€ </h3>
+</div>
 
-
-
-<span id="Totale">@Model.Libro.Prezzo </span>€
 
 
 

@@ -8,5 +8,7 @@
 
         public List<Genere>? Genere { get; set; }
 
+        public List<Fornitore>? Fornitore { get; set;}
+
     }
 }
