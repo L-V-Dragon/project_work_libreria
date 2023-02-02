@@ -12,8 +12,8 @@ using project_work_libreria.Database;
 namespace projectworklibreria.Migrations
 {
     [DbContext(typeof(LibreriaContext))]
-    [Migration("20230131104734_DbLogin")]
-    partial class DbLogin
+    [Migration("20230202014324_modificato_relazione_ordin")]
+    partial class modificatorelazioneordin
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,36 @@ namespace projectworklibreria.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("LibroOrdine", b =>
+                {
+                    b.Property<int>("ListaLibriId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrdineId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ListaLibriId", "OrdineId");
+
+                    b.HasIndex("OrdineId");
+
+                    b.ToTable("LibroOrdine");
+                });
+
+            modelBuilder.Entity("LibroOrdineCliente", b =>
+                {
+                    b.Property<int>("ListaLibriClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrdineClienteId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ListaLibriClienteId", "OrdineClienteId");
+
+                    b.HasIndex("OrdineClienteId");
+
+                    b.ToTable("LibroOrdineCliente");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -287,9 +317,6 @@ namespace projectworklibreria.Migrations
                     b.Property<int?>("Like")
                         .HasColumnType("int");
 
-                    b.Property<int?>("OrdineId")
-                        .HasColumnType("int");
-
                     b.Property<double>("Prezzo")
                         .HasColumnType("float");
 
@@ -310,8 +337,6 @@ namespace projectworklibreria.Migrations
 
                     b.HasIndex("GenereId");
 
-                    b.HasIndex("OrdineId");
-
                     b.ToTable("Libri");
                 });
 
@@ -329,6 +354,9 @@ namespace projectworklibreria.Migrations
                     b.Property<int>("FornitoreId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("Prezzo")
+                        .HasColumnType("int");
+
                     b.Property<int>("Quantita")
                         .HasColumnType("int");
 
@@ -337,6 +365,55 @@ namespace projectworklibreria.Migrations
                     b.HasIndex("FornitoreId");
 
                     b.ToTable("Ordine");
+                });
+
+            modelBuilder.Entity("project_work_libreria.Models.OrdineCliente", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Quantita")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OrdineCliente");
+                });
+
+            modelBuilder.Entity("LibroOrdine", b =>
+                {
+                    b.HasOne("project_work_libreria.Models.Libro", null)
+                        .WithMany()
+                        .HasForeignKey("ListaLibriId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("project_work_libreria.Models.Ordine", null)
+                        .WithMany()
+                        .HasForeignKey("OrdineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("LibroOrdineCliente", b =>
+                {
+                    b.HasOne("project_work_libreria.Models.Libro", null)
+                        .WithMany()
+                        .HasForeignKey("ListaLibriClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("project_work_libreria.Models.OrdineCliente", null)
+                        .WithMany()
+                        .HasForeignKey("OrdineClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -400,10 +477,6 @@ namespace projectworklibreria.Migrations
                         .WithMany()
                         .HasForeignKey("GenereId");
 
-                    b.HasOne("project_work_libreria.Models.Ordine", null)
-                        .WithMany("Libri")
-                        .HasForeignKey("OrdineId");
-
                     b.Navigation("Genere");
                 });
 
@@ -419,11 +492,6 @@ namespace projectworklibreria.Migrations
                 });
 
             modelBuilder.Entity("project_work_libreria.Models.Fornitore", b =>
-                {
-                    b.Navigation("Libri");
-                });
-
-            modelBuilder.Entity("project_work_libreria.Models.Ordine", b =>
                 {
                     b.Navigation("Libri");
                 });

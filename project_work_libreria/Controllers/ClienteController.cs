@@ -83,13 +83,17 @@ namespace project_work_libreria.Controllers
 
             using (LibreriaContext db = new LibreriaContext())
             {
-                formData.OrdineCliente.Data = DateTime.Now;
-                Libro libro = db.Libri.Where(SingoloLibroNelDb => SingoloLibroNelDb.Id == formData.Libro.Id).FirstOrDefault();
-                libro.Quantita = libro.Quantita - formData.OrdineCliente.Quantita;
+                Libro libroDb =db.Libri.Where(x => x.Id == formData.Libro.Id).FirstOrDefault();
+                var quantitaCheck = libroDb.Quantita - formData.OrdineCliente.Quantita;
+                if(quantitaCheck >= 0) {
+                    formData.OrdineCliente.Data = DateTime.Now;
+                    libroDb.Quantita = libroDb.Quantita - formData.OrdineCliente.Quantita;
 
-                db.OrdineCliente.Add(formData.OrdineCliente);
-                db.SaveChanges();
+                    db.OrdineCliente.Add(formData.OrdineCliente);
+                    db.SaveChanges();
+                }
             }
+                
 
             return RedirectToAction("Index");
         }

@@ -3,13 +3,15 @@
 <body class="p-3 m-0 border-0 bd-example">
 
     <!-- Example Code -->
-
+    <form>
     <div class=" container ">
         <div class="row">
             <div class="mb-3">
                 
                 <h2>Il tuo ordine</h2>
             </div>
+            
+            <input asp-for="Libro.Quantita" id="QuantitaMagazzino" type="hidden" value="@Model.Libro.Quantita" class="form-control">
             <!-- Contenitore immg e dettagli ordine -->
             <div class="container col border border-light mx-3" style="height: fit-content;">
                 <div style="max-width: 700px;">
@@ -36,8 +38,8 @@
                                 </div>
                                 <div class="row ">
                                     <p class="card-text col" style="text-align:start">
-                                        <small class="text-success">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill text-success" viewBox="0 0 16 16">
+                                        <small id="disponibilita" class="text-success">
+                                            <svg id="iconaDisponibilita" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill text-success" viewBox="0 0 16 16">
                                                 <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
                                             </svg> Disp.immediata
                                         </small>
@@ -51,7 +53,7 @@
                                                 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
                                             </svg> -->
                                            <div class="form-group col">
-                                                <input id="QuantitaLibri" class="form-control" type="number" placeholder="Quantità" aria-label="default input example">
+                                                <input id="QuantitaLibri" class="form-control" type="number" placeholder="Quantità" min="1" aria-label="default input example">
                                           
                                             </div>
                                           
@@ -107,17 +109,19 @@
                             </tr>
                         </tbody>
                     </table>
-                    <a href="" class="btn btn-info btn-lg  ">
+                    
+                    <button href="" id="BottoneCompra" class="btn btn-info btn-lg  ">
                         <span class="glyphicon glyphicon-tag"></span> Ordina
-                    </a>
+                    </button>
                     
 
                 </div>
-            </div>
+            </div
+            
         </div>
     </div>
     <!---------------- -->
-
+    </form>
 
 
 

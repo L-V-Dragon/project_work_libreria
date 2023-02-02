@@ -160,7 +160,24 @@ window.onload =async function afterWebPageLoad() {
 function aggiornaPrezzo() {
     let quantita = document.getElementById("QuantitaLibri").value;
     let prezzo = document.getElementById("PrezzoLibro").innerHTML;
-    debugger;
+    let quantitaDisponibile = document.getElementById("QuantitaMagazzino").value;
+    let quantitaCheck = quantitaDisponibile - quantita;
     document.getElementById("TotaleParziale").innerHTML = prezzo * quantita;
     document.getElementById("Totale").innerHTML = prezzo * quantita;
+    debugger;
+    if (quantitaCheck < 0) {
+        document.getElementById("BottoneCompra").disabled = true;
+        document.getElementById("disponibilita").classList.remove("text-success");
+        document.getElementById("disponibilita").classList.add("text-muted");
+        document.getElementById("iconaDisponibilita").classList.remove("text-success");
+        document.getElementById("iconaDisponibilita").classList.add("text-muted");
+    } else {
+        document.getElementById("BottoneCompra").disabled = false;
+        document.getElementById("disponibilita").classList.remove("text-muted");
+        document.getElementById("disponibilita").classList.add("text-success");
+        document.getElementById("iconaDisponibilita").classList.remove("text-muted");
+        document.getElementById("iconaDisponibilita").classList.add("text-success");
+
+    }
+    
 }

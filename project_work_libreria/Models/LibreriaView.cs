@@ -4,8 +4,7 @@
     {
         public Libro Libro { get; set; }
 
-        public Ordine Ordine { get; set; }
-
+        public Ordine? Ordine { get; set; }
         public List<Genere>? Genere { get; set; }
 
     }
