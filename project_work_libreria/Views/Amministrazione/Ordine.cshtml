@@ -29,7 +29,7 @@
                 <td><span id="PrezzoLibro">@Model.Libro.Prezzo </span> €</td>
                 <td class="col-2">
 
-                    <input id="QuantitaLibri" asp-for="Ordine.Quantita" class="form-control" type="number" placeholder="Quantità" aria-label="default input example">
+                    <input id="QuantitaLibri" min="1" asp-for="Ordine.Quantita" class="form-control" type="number" placeholder="Quantità" aria-label="default input example">
 
 
                 </td>

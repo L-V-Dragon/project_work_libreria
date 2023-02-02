@@ -33,7 +33,8 @@ function loadProdotti(searchString) {
             res.data.forEach(libro => {
 
                 console.log('libro', libro);
-
+    //questa parte ricrea le tabelle all interno di Cliente index ogni cambiamento
+    //che si fa alla view index delle card deve venir applicato anche qua
                 document.getElementById("Contenuto_utente").innerHTML +=
                     `
         <div class="m-3 card p-3" style="max-width: 500px;">
@@ -86,6 +87,8 @@ function loadTabella(searchString) {
             document.getElementById("Tabella").innerHTML = '';
             res.data.forEach((libro) => {
                 console.log("libro", libro);
+//questa parte ricrea le tabelle all interno di amministazione index ogni cambiamento
+//che si fa alla view index delle tabelle deve venir applicato anche qua
                 document.getElementById("Tabella").innerHTML += `
                
 <tr class="text-white">
@@ -158,12 +161,14 @@ window.onload =async function afterWebPageLoad() {
 
 
 function aggiornaPrezzo() {
-    let quantita = document.getElementById("QuantitaLibri").value;
-    let prezzo = document.getElementById("PrezzoLibro").innerHTML;
+    let quantita = parseInt(document.getElementById("QuantitaLibri").value);
+    let prezzo = parseFloat(document.getElementById("PrezzoLibro").innerHTML.replace(",", "."));
     let quantitaDisponibile = document.getElementById("QuantitaMagazzino").value;
     let quantitaCheck = quantitaDisponibile - quantita;
-    document.getElementById("TotaleParziale").innerHTML = prezzo * quantita;
-    document.getElementById("Totale").innerHTML = prezzo * quantita;
+    debugger;
+    let totale = prezzo * quantita;
+    document.getElementById("TotaleParziale").innerHTML = totale;
+    document.getElementById("Totale").innerHTML = totale;
     debugger;
     if (quantitaCheck < 0) {
         document.getElementById("BottoneCompra").disabled = true;
