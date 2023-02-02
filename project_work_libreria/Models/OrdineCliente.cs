@@ -15,7 +15,7 @@ namespace project_work_libreria.Models
         public DateTime Data { get; set; }
 
         //Chiavi per relazioni con utente e libro
-        public List<Libro>? Libri { get; set; }
+        public List<Libro>? ListaLibriCliente { get; set; }
         //public List<Utente>? Utenti { get; set; }
 
 

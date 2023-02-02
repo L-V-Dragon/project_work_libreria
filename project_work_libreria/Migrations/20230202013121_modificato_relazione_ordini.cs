@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace projectworklibreria.Migrations
 {
     /// <inheritdoc />
-    public partial class DbLogin : Migration
+    public partial class modificatorelazioneordini : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -74,6 +74,20 @@ namespace projectworklibreria.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Genere", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrdineCliente",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Quantita = table.Column<int>(type: "int", nullable: false),
+                    Data = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrdineCliente", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -190,6 +204,7 @@ namespace projectworklibreria.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantita = table.Column<int>(type: "int", nullable: false),
                     Data = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Prezzo = table.Column<int>(type: "int", nullable: true),
                     FornitoreId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -218,8 +233,7 @@ namespace projectworklibreria.Migrations
                     Quantita = table.Column<int>(type: "int", nullable: true),
                     Like = table.Column<int>(type: "int", nullable: true),
                     GenereId = table.Column<int>(type: "int", nullable: true),
-                    FornitoreId = table.Column<int>(type: "int", nullable: true),
-                    OrdineId = table.Column<int>(type: "int", nullable: true)
+                    FornitoreId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -234,11 +248,54 @@ namespace projectworklibreria.Migrations
                         column: x => x.GenereId,
                         principalTable: "Genere",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LibroOrdine",
+                columns: table => new
+                {
+                    LibriId = table.Column<int>(type: "int", nullable: false),
+                    OrdineId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LibroOrdine", x => new { x.LibriId, x.OrdineId });
                     table.ForeignKey(
-                        name: "FK_Libri_Ordine_OrdineId",
+                        name: "FK_LibroOrdine_Libri_LibriId",
+                        column: x => x.LibriId,
+                        principalTable: "Libri",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_LibroOrdine_Ordine_OrdineId",
                         column: x => x.OrdineId,
                         principalTable: "Ordine",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LibroOrdineCliente",
+                columns: table => new
+                {
+                    ListaLibriClienteId = table.Column<int>(type: "int", nullable: false),
+                    OrdineClienteId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LibroOrdineCliente", x => new { x.ListaLibriClienteId, x.OrdineClienteId });
+                    table.ForeignKey(
+                        name: "FK_LibroOrdineCliente_Libri_ListaLibriClienteId",
+                        column: x => x.ListaLibriClienteId,
+                        principalTable: "Libri",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_LibroOrdineCliente_OrdineCliente_OrdineClienteId",
+                        column: x => x.OrdineClienteId,
+                        principalTable: "OrdineCliente",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -291,9 +348,14 @@ namespace projectworklibreria.Migrations
                 column: "GenereId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Libri_OrdineId",
-                table: "Libri",
+                name: "IX_LibroOrdine_OrdineId",
+                table: "LibroOrdine",
                 column: "OrdineId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LibroOrdineCliente_OrdineClienteId",
+                table: "LibroOrdineCliente",
+                column: "OrdineClienteId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ordine_FornitoreId",
@@ -320,7 +382,10 @@ namespace projectworklibreria.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Libri");
+                name: "LibroOrdine");
+
+            migrationBuilder.DropTable(
+                name: "LibroOrdineCliente");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -329,13 +394,19 @@ namespace projectworklibreria.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Genere");
-
-            migrationBuilder.DropTable(
                 name: "Ordine");
 
             migrationBuilder.DropTable(
+                name: "Libri");
+
+            migrationBuilder.DropTable(
+                name: "OrdineCliente");
+
+            migrationBuilder.DropTable(
                 name: "Fornitore");
+
+            migrationBuilder.DropTable(
+                name: "Genere");
         }
     }
 }

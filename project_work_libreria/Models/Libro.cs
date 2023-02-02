@@ -41,6 +41,9 @@ namespace project_work_libreria.Models {
 
         public int? GenereId { get; set; }
         public Genere? Genere { get; set; }
+        public List<Ordine>? Ordine { get; set; }
+        public List<OrdineCliente>? OrdineCliente { get; set; }
+
 
         public Libro() { }
     }
