@@ -15,10 +15,10 @@ namespace project_work_libreria.Models
         public DateTime Data { get; set; }
 
         //Chiavi per relazioni con utente e libro
-        public List<Libro>? ListaLibri { get; set; }
+        public List<Libro>? ListaLibri  { get; set; }
         //public List<Utente>? Utenti { get; set; }
 
-        public int? Prezzo { get; set; }
+        public double Prezzo { get; set; }
 
         //Chiave per relazione 1 a N con fornitore
         public int FornitoreId { get; set; }

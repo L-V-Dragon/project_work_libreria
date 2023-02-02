@@ -44,7 +44,6 @@ namespace project_work_libreria.Models {
         public List<Ordine>? Ordine { get; set; }
         public List<OrdineCliente>? OrdineCliente { get; set; }
 
-
         public Libro() { }
     }
 }

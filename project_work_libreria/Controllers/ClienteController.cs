@@ -88,7 +88,8 @@ namespace project_work_libreria.Controllers
                 if(quantitaCheck >= 0) {
                     formData.OrdineCliente.Data = DateTime.Now;
                     libroDb.Quantita = libroDb.Quantita - formData.OrdineCliente.Quantita;
-
+                    formData.OrdineCliente.ListaLibriCliente = new List<Libro> { libroDb };
+                    libroDb.OrdineCliente = new List<OrdineCliente> { formData.OrdineCliente };
                     db.OrdineCliente.Add(formData.OrdineCliente);
                     db.SaveChanges();
                 }

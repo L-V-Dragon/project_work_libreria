@@ -4,13 +4,18 @@
 @if (Model.Count == 0)
 {
     <h3>Al momento non ci sono Libri disponibili!</h3>
+    <h4>Puoi aggiungerli cliccando il bottone qua sotto!</h4>
+    <a class="btn btn-primary"
+   href="@Url.Action("Create", "Amministrazione")">
+        Aggiungi libro
+    </a>
 }else{
 
             <div class="row">
                 <div class="col mt-4">
          <a class="btn btn-primary"
                href="@Url.Action("Create", "Amministrazione")">
-                        Nuovo articolo
+                        Aggiungi libro
          </a>
          </div>
           

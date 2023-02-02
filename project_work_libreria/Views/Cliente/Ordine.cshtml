@@ -3,15 +3,22 @@
 <body class="p-3 m-0 border-0 bd-example">
 
     <!-- Example Code -->
-    <form>
+    <form asp-controller="Cliente" asp-action="Ordine" method="post">
     <div class=" container ">
         <div class="row">
             <div class="mb-3">
                 
                 <h2>Il tuo ordine</h2>
             </div>
-            
+              <input asp-for="Libro.Isbn" type="hidden" value="@Model.Libro.Isbn" class="form-control">
+              <input asp-for="Libro.Foto"  type="hidden" value="@Model.Libro.Foto" class="form-control">
+              <input asp-for="Libro.Trama"  type="hidden" value="@Model.Libro.Trama" class="form-control">
+              <input asp-for="Libro.Id"  type="hidden" value="@Model.Libro.Id" class="form-control">
+              <input asp-for="Libro.Autore"  type="hidden" value="@Model.Libro.Autore" class="form-control">
+              <input asp-for="Libro.Titolo"  type="hidden" value="@Model.Libro.Titolo" class="form-control">
+
             <input asp-for="Libro.Quantita" id="QuantitaMagazzino" type="hidden" value="@Model.Libro.Quantita" class="form-control">
+            
             <!-- Contenitore immg e dettagli ordine -->
             <div class="container col border border-light mx-3" style="height: fit-content;">
                 <div style="max-width: 700px;">
@@ -45,7 +52,7 @@
                                         </small>
                                     </p>
                                     <div class="button col">
-                                        <div class="row">
+                                  <div class="row">
                                             <div class="col"></div>
                                             <!--Se vogliamo aggiungere la possibilità di comprare piu di un libro e poterlo cancellare-->
                                             <!--  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash col" viewBox="0 0 16 16">
@@ -53,7 +60,7 @@
                                                 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
                                             </svg> -->
                                            <div class="form-group col">
-                                                <input id="QuantitaLibri" class="form-control" type="number" placeholder="Quantità" min="1" aria-label="default input example">
+                                                <input asp-for="OrdineCliente.Quantita" id="QuantitaLibri" class="form-control" type="number" placeholder="Quantità" min="1" aria-label="default input example">
                                           
                                             </div>
                                           
@@ -110,7 +117,7 @@
                         </tbody>
                     </table>
                     
-                    <button href="" id="BottoneCompra" class="btn btn-info btn-lg  ">
+                    <button type="submit" id="BottoneCompra" class="btn btn-info btn-lg  ">
                         <span class="glyphicon glyphicon-tag"></span> Ordina
                     </button>
                     

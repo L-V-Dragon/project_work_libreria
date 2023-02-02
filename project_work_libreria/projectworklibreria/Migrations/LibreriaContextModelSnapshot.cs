@@ -351,8 +351,8 @@ namespace projectworklibreria.Migrations
                     b.Property<int>("FornitoreId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Prezzo")
-                        .HasColumnType("int");
+                    b.Property<double>("Prezzo")
+                        .HasColumnType("float");
 
                     b.Property<int>("Quantita")
                         .HasColumnType("int");

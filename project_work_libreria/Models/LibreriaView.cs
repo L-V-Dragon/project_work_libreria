@@ -6,7 +6,6 @@
 
         public Ordine? Ordine { get; set; }
         public List<Genere>? Genere { get; set; }
-
         public List<Fornitore>? Fornitore { get; set;}
 
     }

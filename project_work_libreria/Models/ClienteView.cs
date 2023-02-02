@@ -2,10 +2,10 @@
 {
     public class ClienteView
     {
-        public Libro Libro { get; set; }
+        public Libro? Libro { get; set; }
 
         public OrdineCliente OrdineCliente { get; set; }
 
-        public Genere Genere { get; set; }
+        public Genere? Genere { get; set; }
     }
 }

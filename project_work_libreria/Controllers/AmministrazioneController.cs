@@ -151,23 +151,13 @@ namespace project_work_libreria.Controllers
         public IActionResult Ordine(int id)
         {
             using (LibreriaContext db = new LibreriaContext())
-
             {
-                List<Fornitore> categoriesFromDb = db.Fornitore.ToList<Fornitore>();
-
-                Libro libroFromDb = db.Libri
-                    .Where(SingoloLibroNelDb => SingoloLibroNelDb.Id == id)
-                    .Include(Libro => Libro.Genere)
-                    .FirstOrDefault();
-
+                Libro libroFromDb = db.Libri.Where(SingoloLibroNelDb => SingoloLibroNelDb.Id == id).Include(Libro => Libro.Genere).FirstOrDefault();
+                List<Fornitore> fornitoreFromDb = db.Fornitore.ToList();
                 LibreriaView modelForView = new LibreriaView();
 
                 modelForView.Libro = libroFromDb;
-
-                modelForView.Fornitore = categoriesFromDb;
-               
-
-
+                modelForView.Fornitore= fornitoreFromDb;
                 return View("Ordine", modelForView);
             }
         }
@@ -184,10 +174,13 @@ namespace project_work_libreria.Controllers
 
             using (LibreriaContext db = new LibreriaContext())
             {
-                formData.Ordine.Data = DateTime.Now;
                 Libro libro = db.Libri.Where(SingoloLibroNelDb => SingoloLibroNelDb.Id == formData.Libro.Id).FirstOrDefault();
+                formData.Ordine.Data = DateTime.Now;
+                formData.Ordine.Prezzo = libro.Prezzo * formData.Ordine.Quantita;
+                formData.Ordine.Prezzo = ((int)(formData.Ordine.Prezzo * 100) / 100.00);
                 libro.Quantita = libro.Quantita + formData.Ordine.Quantita;
-
+                formData.Ordine.ListaLibri = new List<Libro> { libro };
+                libro.Ordine = new List<Ordine> { formData.Ordine };
                 db.Ordine.Add(formData.Ordine);
                 db.SaveChanges();
             }
