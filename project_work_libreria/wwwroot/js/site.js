@@ -37,7 +37,10 @@ function loadProdotti(searchString) {
     //che si fa alla view index delle card deve venir applicato anche qua
                 document.getElementById("Contenuto_utente").innerHTML +=
                     `
-<section class="listaLibri">
+
+    <section class="listaLibri">
+
+
 		<div class="containerLibri">
 			<div class="card">
 				        <div class="content">
@@ -69,16 +72,9 @@ function loadProdotti(searchString) {
 		</div>
 	</section>
 
+ 
 
-
-
-
-
-
-        
-
-
-`;
+            `;
             });
             document.getElementById("spinner-loader").classList.add('d-none');
         }
