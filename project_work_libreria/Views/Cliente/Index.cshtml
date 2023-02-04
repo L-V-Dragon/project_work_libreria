@@ -70,28 +70,41 @@
 
 
 
+    @if (Model.Count == 0)
+    {
+        <h3>Nessun Libro in vendita</h3>
+
+    }
+    else
+    {
+        <div class="container">
+
+            <div class="row text-white">
+                <input type="text" class="form-control w-25" id="SearchBar" placeholder="Search" />
+                <div id="js_no_found" class="row text-center d-none">
+                    <div class="col-12">
+                        <h3>C'è stato un errore nel caricare la pagina</h3>
+                    </div>
+                </div>
+
+                <div class="row d-none border-success" id="Contenuto_utente">
+                </div>
+
+            </div>
+            <div id="spinner-loader" class="d-flex justify-content-center">
+                <div class="spinner-border mt-5" role="status" />
+            </div>
+        </div>
+
+        @section Scripts{
+        <script type="text/javascript">
+
+            loadProdotti();
+            document.getElementById("SearchBar").addEventListener("keyup", searchProdotto);
 
 
-
-<div class="container ">
-
-@if (Model.Count == 0) {
-    <h3>Nessun Libro in vendita</h3>
-
-} else {
-
-
-
-    @section Scripts{
-    <script type="text/javascript">
-
-        loadProdotti();
-        document.getElementById("SearchBar").addEventListener("keyup", searchProdotto);
-
-       
-    </script>
+        </script>
     }
 
-}
+    }
 
-</div>
