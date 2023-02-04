@@ -37,26 +37,45 @@ function loadProdotti(searchString) {
     //che si fa alla view index delle card deve venir applicato anche qua
                 document.getElementById("Contenuto_utente").innerHTML +=
                     `
-        <div class="m-3 card p-3" style="max-width: 500px;">
-        <div class="row no-gutters">
-        <div class="col-md-4">
-        <img src="${libro.foto}" class="card-img" alt="Immagine libro">
-        </div>
-        <div class="col-md-8">
-        <div class="card-body">
-        <h5 class="card-title">${libro.titolo}</h5>
-        <p class="card-text">Trama: ${libro.trama}</p>
-        <h4 class="card-text">Genere: ${libro.genere.nome}</h4>
-        <h4 class="card-text">Prezzo: ${libro.prezzo}$</h4>
-        <a class="btn btn-warning btn-lg " href="/Cliente/Dettagli/${libro.id}">
-        <span class="glyphicon glyphicon-book"></span> Dettagli</a>
-        <a href="/Cliente/Ordine/${libro.id}" class="btn btn-info btn-lg ">
-        <span class="glyphicon glyphicon-tag"></span> Ordina</a>
+<section class="listaLibri">
+		<div class="containerLibri">
+			<div class="card">
+				        <div class="content">
+					        <div class="imgBx">
+						        <img src="${libro.foto}">
+					        </div>
+					        <div class="contentBx">
+						        <h3>${libro.titolo}<br><span>${libro.autore} </span></h3>
+					        </div>
+				        </div>
+				<ul class="sci p-0">
+					<li>
+						<a class="btn btn-warning btn" href="/Cliente/Dettagli/${libro.id}">
+                        <span class="glyphicon glyphicon-book"></span> Dettagli</a>
+					</li>
+					<li>
+						 <td align="left"><div class="heart"></div></td><td align="left"></td><td align="right"></td>
+					</li>
+					<li>
+						<a href="/Cliente/Ordine/${libro.id}" class="btn btn-info  ">
+                         <span class="glyphicon glyphicon-tag"></span> Ordina</a>
+					</li>
+				</ul>
+			</div>
+			
+			
+				
+		
+		</div>
+	</section>
+
+
+
+
+
+
+
         
-        </div>
-        </div>
-        </div>
-        </div>
 
 
 `;

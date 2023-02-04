@@ -57,7 +57,7 @@ body {
         background-position: -2800px 0;
     }
 
-// BASIC
+//BASIC 
 body {
     background: linear-gradient(135deg, #121721 0%, #000000 100%) fixed;
     color: #FFF;
@@ -76,3 +76,246 @@ body {
 .form-floating > .form-control{
     height: calc(3.5rem + 20px);
 }
+
+.nav-titolo {
+    font-size:large;
+}
+
+
+/*Stile cart libri */
+
+
+.listaLibri::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.listaLibri::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+   
+}
+
+.containerLibri {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 40px 0;
+}
+
+    .containerLibri .card {
+        position: relative;
+        width: 300px;
+        height: 400px;
+        background: rgba(255, 255, 255, 0.05);
+        margin: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(10px);
+    }
+
+        .containerLibri .card .content {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: 0.5s;
+        }
+
+        .containerLibri .card:hover .content {
+            transform: translateY(-20px);
+        }
+
+        .containerLibri .card .content .imgBx {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+        }
+
+            .containerLibri .card .content .imgBx img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .containerLibri .card .content .contentBx h3 {
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            font-size: 18px;
+            text-align: center;
+            margin: 20px 0 10px;
+            line-height: 1.1em;
+        }
+
+            .containerLibri .card .content .contentBx h3 span {
+                font-size: 12px;
+                font-weight: 300;
+                text-transform: initial;
+            }
+
+        .containerLibri .card .sci {
+            position: absolute;
+            bottom: 10px;
+            display: flex;
+            align-content:center;
+            margin: 0;
+            padding:0;
+        }
+
+            .containerLibri .card .sci li {
+                list-style: none;
+                margin:0 5px;
+                align-self:center;
+               
+                transform: translateY(40px);
+                transition: 0.5s;
+                opacity: 0;
+            }
+
+        .containerLibri .card:hover .sci li {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+
+        .containerLibri .card .sci li a {
+            color: #000000;
+            font-size: 20px;
+        }
+
+        /*--------------------------------------------Fine card lista libri----------------------------------------------------------*/
+
+
+     /*-------------   Inizio Carousel ----------*/
+
+
+.descrizione {
+    position: relative;
+}
+
+
+
+
+
+.carousel-control-next, .carousel-control-prev {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15%;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    background: 0 0;
+    border: 0;
+    opacity: .5;
+    transition: opacity .15s ease;
+}
+
+
+
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.buttoneCarousel {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background-color: #5de6de;
+    background-image: linear-gradient(315deg, #5de6de 0%, #b58ecc 74%);
+    border: none;
+    border-radius: 50%;
+    transition: 200ms;
+}
+
+    .buttoneCarousel svg {
+        fill: white;
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+    .buttoneCarousel:before {
+        content: '';
+        position: absolute;
+        transform: translateX(-50%) translateY(45px);
+        font-size: 15px;
+        transition: 200ms;
+        color: transparent;
+        font-weight: bold;
+    }
+
+    .buttoneCarousel:hover {
+        box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+        width: 60px;
+        height: 60px;
+    }
+
+        .buttoneCarousel:hover::before {
+            color: #fff;
+        }
+
+        .buttoneCarousel:hover svg {
+            animation: bounce 2s infinite linear;
+        }
+
+@keyframes bounce {
+    0% {
+        transform: translateX(-50%) translateY(-50%)
+    }
+
+    25% {
+        transform: translateX(-50%) translateY(-65%)
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-50%)
+    }
+
+    75% {
+        transform: translateX(-50%) translateY(-35%)
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(-50%)
+    }
+}
+
+.buttoneCarousel:focus {
+    outline: none;
+}
+
+/*------------------ Fine carousel --------------------*/
