@@ -137,7 +137,27 @@ function resetcolor() {
 
 function changeClass(event) {
     event.currentTarget.classList.toggle("is-active");
+    axios.get("/api/Apiamministrazione", {})
+        .then(res => {
+            res.data.forEach(libro => {
+                debugger;
+                if (!document.querySelector(".heart").classList.contains("is-active")) {
+                    libro.like--;
+                } else {
+                    libro.like++;
+                }
+                document.getElementById('like').innerHTML = "Likes: " + libro.like;
+                axios.put(`/api/Apiamministrazione/${libro.id}`, libro, {
+                }).then(rensponse => {
+                    console.log(response);
+                })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            });
+        });
 }
+
 
 window.onload =async function afterWebPageLoad() {
     await new Promise(r => setTimeout(r, 250));

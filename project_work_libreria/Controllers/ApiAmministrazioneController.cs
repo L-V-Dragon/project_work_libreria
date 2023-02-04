@@ -44,5 +44,14 @@ namespace project_work_libreria.Controllers {
                 return Ok(libro);
             }
         }
+        [HttpPut("{id}")]
+        public IActionResult Like(int id, [FromBody]Libro libro) {
+            using LibreriaContext db = new();
+            Libro? libroDb= db.Libri.Where(x=>x.Id==libro.Id).FirstOrDefault();
+            libroDb.Like = libro.Like;
+            db.SaveChanges();
+            return Ok(libro.Like);
+
+        }
     }
 }
