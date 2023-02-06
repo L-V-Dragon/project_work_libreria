@@ -1,67 +1,106 @@
 ﻿@model List<Libro>
 
 
-<div class="container row mt-3">
-    <div class="col-6 descrizione">
-        <h1 class="text-black" style="text-align: justify"> Start your Journey <br> with Books   </h1>
-        <h4 class="text-black mt-2 mb-2" style="text-align: justify">Discover many fantastic books <br> and expand your knowledge </h4>
 
-        <button class="noselect buttoneCarousel m-3"
+
+@if (Model.Count == 0)
+{
+    <h3>Nessun Libro in vendita</h3>
+
+}
+else
+{
+
+    <div class="container row mt-3 mb-3">
+        <div class="col-6 descrizione">
+            <h1 class="text-black" style="text-align: justify"> Start your Journey <br> with Books   </h1>
+            <h4 class="text-black mt-2 mb-2" style="text-align: justify">Discover many fantastic books <br> and expand your knowledge </h4>
+
+            <button class="noselect buttoneCarousel m-3"
                 type="button"
                 data-bs-target="#carouselExampleInterval"
                 data-bs-slide="prev">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left " aria-hidden="true" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-            </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left " aria-hidden="true" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+                </svg>
 
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="noselect buttoneCarousel"
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="noselect buttoneCarousel"
                 type="button"
                 data-bs-target="#carouselExampleInterval"
                 data-bs-slide="next">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class=" bi bi-arrow-right" aria-hidden="true" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
-            </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class=" bi bi-arrow-right" aria-hidden="true" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                </svg>
 
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-
-
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
 
 
-    <div class="col-4">
-        <div id="carouselExampleInterval"
+
+
+        <div class="col-4">
+            <div id="carouselExampleInterval"
              class="carousel slide"
              data-bs-ride="carousel">
-            <div class="carousel-inner">
-                 @foreach (Libro libro in Model)
+                <div class="carousel-inner">
+                    @{int i = 0;}
+                    @foreach (Libro libro in Model)
+                    {
+                        if (i == 0)
                         {
-                <div class="carousel-item active" data-bs-interval="10000">
-                    <div class="containerBook">
-                            <div class="book" style=" background-image:url(@libro.Foto) ">
-                            <div class="front">
+                            <div class="carousel-item active" data-bs-interval="10000">
+                                <div class="containerBook">
+                                    <div class="book" style=" background-image:url(@libro.Foto) ">
+                                        <div class="front">
 
-                                    <div class="coverBook " style=" background-image:url(@libro.Foto) ">
+                                            <div class="coverBook " style=" background-image:url(@libro.Foto) ">
+                                            </div>
+                                        </div>
+                                        <div class="left-side">
+                                            <h2>
+                                                <a href=" @Url.Action("Dettagli", "Cliente", new { id = libro.Id })" class="text-dark stretched-link">@libro.Autore</a>
+
+                                            </h2>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="left-side">
-                                <h2>
-                                        <a href=" @Url.Action("Dettagli", "Cliente", new { id = libro.Id })" class="text-dark stretched-link">@libro.Autore</a>
+                        }
+                        else
+                        {
+                            <div class="carousel-item" data-bs-interval="10000">
+                                <div class="containerBook">
+                                    <div class="book" style=" background-image:url(@libro.Foto) ">
+                                        <div class="front">
 
-                                </h2>
+                                            <div class="coverBook " style=" background-image:url(@libro.Foto) ">
+                                            </div>
+                                        </div>
+                                        <div class="left-side">
+                                            <h2>
+                                                <a href=" @Url.Action("Dettagli", "Cliente", new { id = libro.Id })" class="text-dark stretched-link">@libro.Autore</a>
+
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                        }
+
+                        
+                            i++;
+                        
+
 
                 }
-            </div>
+                </div>
 
+            </div>
         </div>
     </div>
-</div>
 
 
 
@@ -70,41 +109,54 @@
 
 
 
-    @if (Model.Count == 0)
-    {
-        <h3>Nessun Libro in vendita</h3>
 
-    }
-    else
-    {
-        <div class="container">
 
-            <div class="row text-white">
-                <input type="text" class="form-control w-25" id="SearchBar" placeholder="Search" />
-                <div id="js_no_found" class="row text-center d-none">
-                    <div class="col-12">
-                        <h3>C'è stato un errore nel caricare la pagina</h3>
-                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="container">
+
+        <div class="row text-white">
+            <input type="text" class="form-control w-25" id="SearchBar" placeholder="Search" />
+            <div id="js_no_found" class="row text-center d-none">
+                <div class="col-12">
+                    <h3>C'è stato un errore nel caricare la pagina</h3>
                 </div>
-
-                <div class="row d-none border-success" id="Contenuto_utente">
-                </div>
-
             </div>
-            <div id="spinner-loader" class="d-flex justify-content-center">
-                <div class="spinner-border mt-5" role="status" />
+
+            <div class="row d-none border-success" id="Contenuto_utente">
             </div>
+
         </div>
+        <div id="spinner-loader" class="d-flex justify-content-center">
+            <div class="spinner-border mt-5" role="status" />
+        </div>
+    </div>
 
-        @section Scripts{
-        <script type="text/javascript">
+    @section Scripts{
+    <script type="text/javascript">
 
-            loadProdotti();
-            document.getElementById("SearchBar").addEventListener("keyup", searchProdotto);
+        loadProdotti();
+        document.getElementById("SearchBar").addEventListener("keyup", searchProdotto);
 
 
-        </script>
+    </script>
     }
 
-    }
+}
+
+
+
+
 

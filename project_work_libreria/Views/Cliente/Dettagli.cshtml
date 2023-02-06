@@ -34,9 +34,28 @@
 
           <label for="page-2" class="book__page book__page--4">
             <div class="page__content">
-              <h1 class="page__content-title">Trama</h1>
+              <h1 class="page__content-title">Dettagli</h1>
               <div class="page__content-blockquote">
-                        <p class="page__content-blockquote-text">${libro.trama} </p>
+                          <table>
+                                  <tr>
+                                            <td align="left">Isbn: </td><td align="left"> ${libro.isbn} </td>
+                                  </tr>
+                                <tr>
+                                                    <td align="left"> <span class="myLikes">Likes: ${libro.like}</span></td><td align="left"></td><td align="right"><div class="heart"></div>   </td>
+                          </tr>
+                         
+                                  <tr>
+                                            <td align="left"> <p>${libro.prezzo} € </p></td><td align="left"></td><td align="right"></td>
+                                  </tr>
+                          <tr>
+                            <td align="left"> </td><td align="left"></td><td align="right"></td>
+                          </tr>
+                                         < <td align="left">>
+                                <a href="/Cliente/Ordine/${libro.id}" class="btn btn-info  ">
+                                 <span class="glyphicon glyphicon-tag"></span> Ordina</a>
+                            </td>
+
+                        </table>
 
               </div>
               <div class="page__number">3</div>
@@ -72,25 +91,9 @@
             </div>
             <div class="book__page-back">
               <div class="page__content">
-                <h1 class="page__content-title"></h1>
-                <table class="page__content-table">
-                  <tr>
-                            <td align="left">Like</td><td align="left"></td><td align="right">  <span class="myLikes">Likes: ${libro.like}</span> </td>
-                  </tr>
-                  <tr>
-                            <td align="left"><div class="heart"></div></td><td align="left"></td><td align="right"></td>
-                  </tr>
-                          <tr>
-                                    <td align="left">${libro.prezzo} €</td><td align="left"></td><td align="right"></td>
-                          </tr>
-                  <tr>
-                    <td align="left"> Compra ora! </td><td align="left"></td><td align="right"></td>
-                  </tr>
-                  <tr>
-                            <td align="left"> <button class="button text-center">Compra ora</button> </td><td align="left"></td><td align="right"></td>
-                  </tr>
-                  
-                </table>
+                <h1 class="page__content-title"> Trama </h1>
+
+                         <p class="page__content-blockquote-text">${libro.trama} </p>
 
                 <div class="page__number">2</div>
               </div>
