@@ -84,15 +84,15 @@ body {
 
 /*Stile cart libri */
 
-
+.listaLibri {
+    display: inline-flex;
+    width: 100%;
+}
 .listaLibri::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    
 }
 
 .listaLibri::after {
@@ -100,8 +100,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+  
    
 }
 
@@ -109,10 +108,10 @@ body {
     position: relative;
     z-index: 1;
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
     align-items: center;
     flex-wrap: wrap;
-    margin: 40px 0;
+    margin: 10px 0;
 }
 
     .containerLibri .card {

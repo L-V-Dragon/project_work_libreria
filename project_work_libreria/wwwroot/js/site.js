@@ -38,10 +38,10 @@ function loadProdotti(searchString) {
                 document.getElementById("Contenuto_utente").innerHTML +=
                     `
 
-    <section class="listaLibri">
+    <section class="listaLibri ">
 
 
-		<div class="containerLibri">
+		<div class="containerLibri ">
 			<div class="card">
 				        <div class="content">
 					        <div class="imgBx">
