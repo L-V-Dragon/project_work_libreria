@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@model List<UserForView>
+
+<div>
+    <table class="table mt-5 bg-secondary bg-opacity-50">
+        <thead>
+            <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Ruolo</th>
+                <th scope="col">Modifica</th>
+
+            </tr>
+        </thead>
+        <tbody id="Tabella">
+            @foreach (var user in Model) {
+                @if (user.UserRuolo is not null) {
+                    <tr class="text-white">
+
+                        <td>@user.User.UserName</td>
+                        <td>@user.UserRuolo.Name</td>
+                        @if (UserManager.GetUserName(User) != user.User.UserName) {
+                            <td class="miei-buttons-post">
+                                <a class="btn btn-warning btn-sm" href="@Url.Action("Update", "Amministrazione", new { id = user.User.Id })">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polygon points="14 2 18 6 7 17 3 17 3 13 14 2"></polygon><line x1="3" y1="22" x2="21" y2="22"></line></svg>
+                                </a>
+                            </td>
+                        }else{<td></td>}
+                    </tr>
+                } else {
+                    <tr class="text-white">
+
+                        <td>@user.User.UserName</td>
+                        <td>Ruolo da assegnare</td>
+                        <td class="miei-buttons-post">
+
+                            <a class="btn btn-warning btn-sm" href="@Url.Action("Update", "Amministrazione", new { id = user.User.Id })">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polygon points="14 2 18 6 7 17 3 17 3 13 14 2"></polygon><line x1="3" y1="22" x2="21" y2="22"></line></svg>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+            </tbody>
+    </table>
+</div>
+
+

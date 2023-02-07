@@ -185,23 +185,20 @@ function aggiornaPrezzo() {
     let prezzo = parseFloat(document.getElementById("PrezzoLibro").innerHTML.replace(",", "."));
     let quantitaDisponibile = document.getElementById("QuantitaMagazzino").value;
     let quantitaCheck = quantitaDisponibile - quantita;
-    debugger;
     let totale = prezzo * quantita;
     document.getElementById("TotaleParziale").innerHTML = totale;
     document.getElementById("Totale").innerHTML = totale;
-    debugger;
+    
     if (quantitaCheck < 0) {
         document.getElementById("BottoneCompra").disabled = true;
-        document.getElementById("disponibilita").classList.remove("text-success");
-        document.getElementById("disponibilita").classList.add("text-muted");
-        document.getElementById("iconaDisponibilita").classList.remove("text-success");
-        document.getElementById("iconaDisponibilita").classList.add("text-muted");
+        document.getElementById("disponibilita").classList.replace("text-success","text-muted");
+        document.getElementById("iconaDisponibilita").classList.replace("text-success","text-muted");
+        document.getElementById("QuantitaDisp").classList.replace("text-success", "text-danger");
     } else {
         document.getElementById("BottoneCompra").disabled = false;
-        document.getElementById("disponibilita").classList.remove("text-muted");
-        document.getElementById("disponibilita").classList.add("text-success");
-        document.getElementById("iconaDisponibilita").classList.remove("text-muted");
-        document.getElementById("iconaDisponibilita").classList.add("text-success");
+        document.getElementById("disponibilita").classList.replace("text-muted", "text-success");
+        document.getElementById("iconaDisponibilita").classList.replace("text-muted","text-success");
+        document.getElementById("QuantitaDisp").classList.replace("text-danger", "text-success");
 
     }
     

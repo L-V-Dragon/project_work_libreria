@@ -1,11 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.SqlServer.Server;
 using project_work_libreria.Database;
 using project_work_libreria.Models;
+using System.Data;
 
 namespace project_work_libreria.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AmministrazioneController : Controller
     {
         public IActionResult Index()
@@ -186,6 +190,32 @@ namespace project_work_libreria.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+
+        //Comandi per gestire gli account registrati
+        [HttpGet]
+        public IActionResult ModificaUtenti(string id) {
+            LibreriaContext db = new();
+            var Users = db.Users.ToList();
+            List<UserForView> users = new();
+            foreach (var user in Users) {
+                UserForView RuoliUtente = new();
+                var Ruoli= db.Roles.ToList();
+                RuoliUtente.Ruoli = Ruoli;
+                var RuoloUtente = db.UserRoles.Where(x => x.UserId== user.Id).FirstOrDefault();
+                if(RuoloUtente is not null) {
+                    string RuoloUtenteId = RuoloUtente.RoleId;
+                    var RuoloPerUtente= db.Roles.Where(y=> y.Id==RuoloUtenteId).FirstOrDefault();
+                    RuoliUtente.UserRuolo = RuoloPerUtente;
+                } else {
+                    RuoliUtente.UserRuolo= null;
+                }
+                RuoliUtente.User = user;
+                users.Add(RuoliUtente);
+                
+            }
+            return View(users);
         }
 
     }

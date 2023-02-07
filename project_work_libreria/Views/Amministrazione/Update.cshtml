@@ -7,6 +7,7 @@
         @Html.AntiForgeryToken()
         <input asp-for="Libro.Id" type="hidden" class="form-control">
         <input asp-for="Libro.Like" type="hidden" class="form-control">
+        <input asp-for="Libro.Quantita" type="hidden" class="form-control" />
         <div class="mb-3 col-4">
             <label>Inserire il titolo libro:</label>
             <input asp-for="Libro.Titolo" type="text" class="form-control" />
@@ -28,9 +29,7 @@
         </div>
         <div class="mb-3 col-4">
             <label>Categoria:</label>
-            <option value""></option>
             <select asp-for="Libro.GenereId" rows="10" class="d-block w-100">
-                <option value=""></option>
                 @foreach (Genere categoria in Model.Genere) {
                     <option value="@categoria.Id">@categoria.Nome</option>
                 }
@@ -49,16 +48,10 @@
             <input asp-for="Libro.Prezzo" type="text" class="form-control" />
             <span asp-validation-for="Libro.Prezzo" class="text-danger"></span>
         </div>
-        <div class="mb-3 col-4">
-            <label>Inserisci la quantità del libro:</label>
-            <input asp-for="Libro.Quantita" type="number" class="form-control" />
-            <span asp-validation-for="Libro.Quantita" class="text-danger"></span>
-        </div>
 
         <div class="mb-3 col-4">
             <label>Categoria:</label>
-            <option value""></option>
-            <select asp-for="Libro.GenereId" rows="10" class="d-block w-100">
+            <select asp-for="Libro.GenereId" class="h-50 d-block w-100">
                 <option value=""></option>
                 @foreach (Genere categoria in Model.Genere) {
                     <option value="@categoria.Id">@categoria.Nome</option>

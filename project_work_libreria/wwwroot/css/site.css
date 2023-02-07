@@ -41,6 +41,16 @@ body {
     left: 0;
 }
 
+#disponibilita{
+    transition: all 0.5s;
+}
+#iconaDisponibilita{
+    transition: all 0.5s;
+}
+#QuantitaDisp{
+    transition: all 0.5s;
+}
+
 /* css per animazione del cuore */
 .heart {
     width: 100px;
