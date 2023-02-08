@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "_LayoutDettagli";
+    //Layout = "_LayoutDettagli";
 }
 
 @model Libro
@@ -34,30 +34,32 @@
 
           <label for="page-2" class="book__page book__page--4">
             <div class="page__content">
-              <h1 class="page__content-title">Dettagli</h1>
-              <div class="page__content-blockquote">
+             
                           <table>
+                                   <tr class="m-0 p-0">
+                                                                            <td align="left">Aggiungi</td><td align="left"> ai preferiti</td><td align="right"><div class="heart "></div>   </td>
+                                          </tr>
+                           <tr>
+                                                            <td align="left"> <span class="myLikes">Likes: </span></td><td align="left">${libro.like}</td><td align="right"></div>   </td>
+                          </tr>
                                   <tr>
                                             <td align="left">Isbn: </td><td align="left"> ${libro.isbn} </td>
                                   </tr>
-                                <tr>
-                                                    <td align="left"> <span class="myLikes">Likes: ${libro.like}</span></td><td align="left"></td><td align="right"><div class="heart"></div>   </td>
-                          </tr>
+                                        
+                                          <tr>
+                                                                    <td align="left">Prezzo: </td><td align="left"> <p class="m-0 p-0">${libro.prezzo} € </p> </td>
+                                                  </tr>
                          
                                   <tr>
-                                            <td align="left"> <p>${libro.prezzo} € </p></td><td align="left"></td><td align="right"></td>
+                                                                    <td align="left"> </td><td align="left"><a href="/Cliente/Ordine/${libro.id}" class="btn btn-info  ">
+                                                 <span class="glyphicon glyphicon-tag"></span> Ordina</a></td><td align="right">  </td>
                                   </tr>
-                          <tr>
-                            <td align="left"> </td><td align="left"></td><td align="right"></td>
-                          </tr>
-                                         < <td align="left">>
-                                <a href="/Cliente/Ordine/${libro.id}" class="btn btn-info  ">
-                                 <span class="glyphicon glyphicon-tag"></span> Ordina</a>
-                            </td>
+                                 
+                            </button>
 
                         </table>
 
-              </div>
+             
               <div class="page__number">3</div>
             </div>
           </label>
@@ -91,9 +93,9 @@
             </div>
             <div class="book__page-back">
               <div class="page__content">
-                <h1 class="page__content-title"> Trama </h1>
+                                <h1 class="page__content-title "> Trama </h1>
 
-                         <p class="page__content-blockquote-text">${libro.trama} </p>
+                                 <p class="page__content-blockquote-text"  size="4">${libro.trama} </p>
 
                 <div class="page__number">2</div>
               </div>
@@ -108,9 +110,23 @@
 
 
 
+              
 
 
-                                        `;
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+
+                                                `;
                 })
         
     </script>

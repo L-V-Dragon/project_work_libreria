@@ -15,11 +15,11 @@
 body {
     font-weight: var(--fw-regular);
     font-size: 0.875rem;
-    color: var(--clr-neutral-400);
+   /* color: var(--clr-neutral-400);
     background-color: var(--clr-secondary-200);
     display: grid;
     place-content: center;
-    margin: 1rem;
+    margin: 1rem;*/
 }
 
 
@@ -63,7 +63,7 @@ body {
 
 :root {
     /* colors */
-    --body-bg: #FAFAFA;
+/*    --body-bg: #FAFAFA;*/
     --page-bg: #F5F5F5;
     --dark-text: #2A2935;
     /* spacing */
@@ -72,7 +72,7 @@ body {
     /* fonts */
     --book-title: "Tulpen One", sans-serif;
     --title: "Cormorant Garamond", serif;
-    --body: "Cormorant Garamond", serif;
+   --body: "Cormorant Garamond", serif;
     --base-size: var(--baseline) * 1.2;
 }
 
@@ -81,17 +81,19 @@ body {
 }
 
 body {
-    background-color: var(--body-bg);
+  /*  background-color: var(--body-bg);
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center;*/
 }
 
 .cover {
-    width: calc(var(--baseline) * 60);
-    height: calc(var(--baseline) * 42.6);
+   /* width: calc(var(--baseline) * 60);
+    height: calc(var(--baseline) * 42.6);*/
+   width:650px;
+   height:445px;
     box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
 }
 
@@ -134,8 +136,9 @@ body {
     right: 0;
     pointer-events: none;
     transform-style: preserve-3d;
-    background-color: var(--page-bg);
-    background-image: linear-gradient(90deg, #e3e3e3 0%, rgba(247, 247, 247, 0) 18%);
+   
+
+    padding: 0 calc(var(--baseline) * 3);
 }
 
 .book__page--4 {
@@ -221,17 +224,7 @@ body {
     margin-bottom: calc(var(--baseline) * 3);
 }
 
-.book__page .page__content-table {
-    width: 100%;
-    margin-top: calc(var(--baseline) * 2);
-}
 
-    .book__page .page__content-table td {
-        font-family: var(--title);
-        font-size: calc(var(--base-size) * 1);
-        padding-bottom: calc(var(--baseline) * 1.5);
-        text-transform: uppercase;
-    }
 
 .book__page .page__content-blockquote {
     margin-bottom: calc(var(--baseline) * 2);
@@ -309,3 +302,90 @@ body {
     transform: translate(-100%, 0%);
     font-size:18px;
 }
+
+/*---------Recensioni-------*/
+
+
+.fa {
+    font-size: 25px;
+}
+
+.checked {
+    color: orange;
+}
+
+/* Three column layout */
+.side {
+    float: left;
+    width: 15%;
+    margin-top: 10px;
+}
+
+.middle {
+    margin-top: 10px;
+    float: left;
+    width: 70%;
+}
+
+/* Place text to the right */
+.right {
+    text-align: right;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* The bar container */
+.bar-container {
+    width: 100%;
+    background-color: #f1f1f1;
+    text-align: center;
+    color: white;
+}
+
+/* Individual bars */
+.bar-5 {
+    width: 60%;
+    height: 18px;
+    background-color: #04AA6D;
+}
+
+.bar-4 {
+    width: 30%;
+    height: 18px;
+    background-color: #2196F3;
+}
+
+.bar-3 {
+    width: 10%;
+    height: 18px;
+    background-color: #00bcd4;
+}
+
+.bar-2 {
+    width: 4%;
+    height: 18px;
+    background-color: #ff9800;
+}
+
+.bar-1 {
+    width: 15%;
+    height: 18px;
+    background-color: #f44336;
+}
+
+/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+@media (max-width: 400px) {
+    .side, .middle {
+        width: 100%;
+    }
+
+    .right {
+        display: none;
+    }
+}
+

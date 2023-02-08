@@ -98,5 +98,12 @@ namespace project_work_libreria.Controllers
 
             return RedirectToAction("Index");
         }
+
+
+
+        public IActionResult RecensioneLibro()
+        {
+            return View();
+        }
     }
 }

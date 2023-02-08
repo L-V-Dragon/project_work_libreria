@@ -49,10 +49,12 @@
             <input asp-for="Libro.Prezzo" type="text" class="form-control" />
             <span asp-validation-for="Libro.Prezzo" class="text-danger"></span>
         </div>
+        @Html.AntiForgeryToken()
         <div class="mb-3 col-4">
-            <label>Inserisci la quantità del libro:</label>
-            <input asp-for="Libro.Quantita" type="number" class="form-control" />
-            <span asp-validation-for="Libro.Quantita" class="text-danger"></span>
+          
+            <label type="hidden">Inserisci la quantità del libro:</label>
+            <input asp-for="Libro.Quantita" type="hidden" class="form-control" />
+            <span asp-validation-for="Libro.Quantita" type="hidden" class="text-danger"></span>
         </div>
 
         <div class="mb-3 col-4">
