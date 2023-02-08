@@ -1,0 +1,22 @@
+﻿@model UserForView
+
+<div class="bg-secondary bg-opacity-50 text-center">
+
+
+    <form asp-controller="Amministrazione" asp-action="ModificaUtente" method="post">
+
+        <input type="hidden" asp-for="User.Id"/>
+        <input type="hidden" asp-for="User.UserName"/>
+        <div> 
+            <span> @Model.User.UserName </span> 
+            <select class="m-2"asp-for="UserRuolo.Id">
+                @foreach(var ruolo in Model.Ruoli) {
+                    <option class="m-2" value="@ruolo.Id"> @ruolo.Name </option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Salva modifiche</button>
+
+    </form>
+
+</div>
