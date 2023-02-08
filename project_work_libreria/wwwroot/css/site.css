@@ -12,12 +12,22 @@ html {
 
 
 body {
-    background-image: url(https://th.bing.com/th/id/R.91b4ffc0495050234722a38cc9fa2867?rik=PKi9hX9OTHGdBQ&pid=ImgRaw&r=0)
+    background-image: url(https://wallpapercave.com/wp/wp4064930.jpg);
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: fixed;
 }
 
-.bg-nav {
+.bg-marrone {
     background-color:saddlebrown;
-    opacity:60%;
+    opacity: 80%;
+}
+.bg-verde {
+    background-color: forestgreen;
+    opacity: 80%;
+}
+.aggiusta-opacity{
+    opacity: 100%;
 }
 .miei-buttons-post {
     display: flex;

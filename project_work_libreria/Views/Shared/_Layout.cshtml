@@ -10,8 +10,8 @@
 </head>
 <body class="bg-main ">
     <header>
-        <nav class="text-white bg-nav text-center">
-            <div class="container-fluid my-4 ">
+        <nav class="text-white text-center bg-marrone navbar-static-top">
+            <div id="navbar" class="container-fluid my-4 aggiusta-opacity">
 
                 <div class="row">
                     <div class="col-2 col-md-2 align-content-center">
@@ -25,7 +25,7 @@
                         </h1>
                     </div>
 
-                    <div class="col-12 col-md-2 ">
+                    <div class="col-12 col-md-2 mt-2 ">
                         <partial name="_LoginPartial" />
                     </div>
                 </div>
@@ -42,7 +42,7 @@
         ho provato di tutto questa è una richiesta di aiuto fixatelo vi prego.
         Pedra 31/01/2023 01:12 feat. Lorenzo
     -->
-    <footer class="border-top myClass bg-secondary bg-opacity-75 text-white">
+    <footer class="border-top myClass bg-secondary bg-opacity-75 text-white text-center">
 
         LaCasaDeiLibri - Via Generation 07 - Colombo Demarku Pedrazzini Viotti Volpin - &copy; 2023
     </footer>
@@ -65,3 +65,13 @@
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>*@
+
+@*@section Scripts{
+    <script type="text/javascript">
+        if(amministratore){
+            document.getElementById("navbar").classList.add("bg-verde");
+        }else{
+            document.getElementById("navbar").classList.add("bg-marrone");
+        }
+    </script>
+    }*@
