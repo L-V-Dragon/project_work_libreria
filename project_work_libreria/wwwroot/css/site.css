@@ -420,5 +420,17 @@ body {
     clear: both;
     display: table;
 }*/
-/*Recensioni buttone*/
+/*-------------------------Home---------------------------------------------*/
 
+
+
+.caption {
+    position:relative;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    color: #000;
+    font-size: 400%
+}
+
+    

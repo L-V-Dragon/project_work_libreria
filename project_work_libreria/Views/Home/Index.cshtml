@@ -1,18 +1,32 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+
 @using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
 @if (!SignInManager.IsSignedIn(User)) {
-    <h1>Non sei loggato</h1>
+   
 } else {
     <h1> Ciao @UserManager.GetUserName(User)</h1>
 }
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
 
+
+
+
+<div class="container row">
+    
+    <div class="caption col mt-5 mx-5 p-0">
+        <span class="p-0 gap-0">I tuoi libri <br> a domicilio <br></span>
+        <div class="d-grid gap-2 d-md-block mt-5">
+            <button class="btn btn-primary mx-3" type="button">Registrati gratis</button>
+            <button class="btn btn-primary" type="button">Esplora</button>
+        </div>
+
+    </div>
+    <div class="col">
+        <img src="/img/7411784_3630156-PhotoRoom.png-PhotoRoom.png" alt="ImmagineHome" style="width:100%;">
+    </div>
+</div>
