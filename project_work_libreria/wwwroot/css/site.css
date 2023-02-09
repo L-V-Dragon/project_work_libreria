@@ -1,7 +1,10 @@
 ﻿
 
-html {
-  font-size: 14px;
+html, body {
+    /* font-size: 14px;*/
+    min-height: 100vh;
+    margin:0;
+    padding: 0;
 }
 
 @media (min-width: 768px) {
@@ -16,6 +19,11 @@ body {
     background-repeat: no-repeat;
     background-position: right top;
     background-attachment: fixed;
+  
+}
+body {
+    padding-bottom:60px; /* Height of the footer */
+    position: relative;
 }
 
 .bg-marrone {
@@ -448,6 +456,18 @@ body {
    
    
     font-size: 200%
+}
+
+footer {
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+  
+    bottom: 0;
+    width: 100%;
+    height:60px; /* Height of the footer */
+    background: #6cf;
 }
 
     
