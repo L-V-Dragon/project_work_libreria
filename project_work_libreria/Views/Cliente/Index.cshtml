@@ -12,7 +12,7 @@ else
 {
 
     <div class="container row mt-3 mb-3">
-        <div class="col-6 descrizione">
+        <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 col-xl-6  descrizione">
             <h1 class="text-black mb-3" style="text-align: justify"> Inizia il tuo viaggio  <br> con i nostri Libri  </h1>
             <h4 class="text-black mt-5 mb-2" style="text-align: justify"> I libri piu apprezzati ! </h4>
 
@@ -23,7 +23,7 @@ else
             var libriQuantità = Model.OrderByDescending(x => x.Like).ToList();
         }
 
-        <div class="col-4">
+        <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 col-xl-6 ">
             <div id="carouselExampleInterval"
              class="carousel slide"
              data-bs-ride="carousel">
@@ -98,30 +98,35 @@ else
     </div>
 
 
-    <div class="border-bottom m-3" >
+    <div class="border-bottom m-3 col-sm-12 col-xs-12 col-md-6 col-lg-6 col-xl-6 col-xl-6 ">
         <h4>Libri </h4>
     </div>
 
 
-
-
+    <input type="text" class="form-control  w-25  " id="SearchBar" style="float:right; margin-right: 50px;" placeholder="Search" />
+     
     <div class="container ">
-       
+
+        
+
         <div class=" text-white ">
 
 
-            <input type="text" class="form-control  w-25  " id="SearchBar" style="float:right; margin-right: 50px;" placeholder="Search" />
+           
 
             <div id="js_no_found" class="row text-center d-none">
                 <div class="col-12">
                     <h3>C'è stato un errore nel caricare la pagina</h3>
                 </div>
             </div>
-
-            <div class="d-none border-success col-md-sm-4" style="display: inline-flex;" id="Contenuto_utente">
+            @*<div class="table-responsive">
+                <table class="table">*@
+                    <div class="d-none  col-sm-12 col-xs-12 col-md-4 col-lg-4 col-xl-4 col-xl-4 " style="display: inline-flex;" id="Contenuto_utente">
             </div>
-
+            @*</table>
+            </div>*@
         </div>
+
         <div id="spinner-loader" class="d-flex justify-content-center">
             <div class="spinner-border mt-5" role="status" />
         </div>

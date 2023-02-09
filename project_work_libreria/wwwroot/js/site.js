@@ -42,6 +42,7 @@ function loadProdotti(searchString) {
 
 
 		<div class="containerLibri ">
+
 			<div class="card">
 				        <div class="content">
 					        <div class="imgBx">
