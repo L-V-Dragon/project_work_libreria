@@ -11,43 +11,31 @@
     <link rel="stylesheet" href="~/css/StyleSheet.scss" asp-append-version="true" />
 </head>
 <body class="bg-main ">
+    <header>
+        <nav class="text-white text-center bg-marrone navbar-static-top">
+            <div id="navbar" class="container-fluid my-4 aggiusta-opacity">
 
-    <nav class="navbar navbar-expand-lg" style="background-color:rgb(143, 107, 82);">
-        <div class="container-fluid ">
-            <a class="navbar-brand text-white" href="#"><img src="https://i.pinimg.com/originals/7d/e1/52/7de1524dc6e04749931920474056b7c0.png" alt="Logo" class="m-4 bg-white rounded-circle" height="80"></a>
-            <a class="navbar-brand nav-titolo active text-white" href="#"> La Casa dei libri </a>
-            <button class="navbar-toggler  btn-close-white " type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon "></span>
-            </button>
-            <div class="collapse navbar-collapse " id="navbarScroll">
-                <ul class="navbar-nav  me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 75vh; ">
-                    
-                    <li class="nav-item ">
-                        <a class="nav-link text-white"  asp-area="" asp-controller="Cliente" asp-action="Index">Libri</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false">Libri
+                <div class="row">
+                    <div class="col-2 col-md-2 align-content-center">
+                        <a class="" href="#">
+                            <img src="https://i.pinimg.com/originals/7d/e1/52/7de1524dc6e04749931920474056b7c0.png" alt="Logo" class="m-4 bg-white rounded-circle" height="80">
                         </a>
-                        <ul class="dropdown-menu ">
-                            
-                            <li><a class="dropdown-item text-white" asp-area="" asp-controller="Cliente" asp-action="Index">Another action</a></li>
-                            <li><hr class="dropdown-divider text-white"></li>
-                            <li><a class="dropdown-item text-white" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item text-white">
-                        <a class="nav-link disabled text-white">Link</a>
-                    </li>
-                </ul>
-                <div class="d-flex text-white" role="login">
-                    <partial name="_LoginPartial" />
+                    </div>
+                    <div class="col-10 col-md-8 mt-4">
+                        <h1>
+                            La Casa Dei Libri
+                        </h1>
+                    </div>
+
+                    <div class="col-12 col-md-2 mt-2 ">
+                        <partial name="_LoginPartial" />
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
-   
-    <div class="container text-white">
-        <main role="main" class="pb-3 text-white">
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
@@ -56,27 +44,10 @@
         ho provato di tutto questa è una richiesta di aiuto fixatelo vi prego.
         Pedra 31/01/2023 01:12 feat. Lorenzo
     -->
-    <!-- <footer class="border-top  bg-secondary bg-opacity-75 text-white">
+    <footer class="border-top myClass bg-secondary bg-opacity-75 text-white text-center">
 
         LaCasaDeiLibri - Via Generation 07 - Colombo Demarku Pedrazzini Viotti Volpin - &copy; 2023
-    </footer>-->
-    <!-- <footer class="container p-4 rounded">
-        <div class="d-lg-flex justify-content-between">
-            <div>
-                <span>LOGO</span>
-            </div>
-            <div class="copyright">
-                <p>developed and maintained by <a href="#" target="_blank">company</a></p>
-            </div>
-            <div>
-                <ul class="d-flex gap-3 list-unstyled">
-                    <li><a href="#"><i class="bi bi-facebook"></i></a></li>
-                    <li><a href="#"><i class="bi bi-twitter"></i></a></li>
-                    <li><a href="#"><i class="bi bi-instagram"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>-->
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
 
@@ -100,3 +71,13 @@
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>*@
+
+@*@section Scripts{
+    <script type="text/javascript">
+        if(amministratore){
+            document.getElementById("navbar").classList.add("bg-verde");
+        }else{
+            document.getElementById("navbar").classList.add("bg-marrone");
+        }
+    </script>
+    }*@
