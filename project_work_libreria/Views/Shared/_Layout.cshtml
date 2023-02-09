@@ -12,34 +12,53 @@
 </head>
 <body class="bg-main ">
     <header>
-        <nav class="text-white text-center bg-marrone navbar-static-top">
-            <div id="navbar" class="container-fluid my-4 aggiusta-opacity">
 
-                <div class="row">
-                    <div class="col-2 col-md-2 align-content-center">
-                        <a class="" href="@Url.Action("Index", "Cliente")">
-                            <img src="https://i.pinimg.com/originals/7d/e1/52/7de1524dc6e04749931920474056b7c0.png" alt="Logo" class="m-4 bg-white rounded-circle" height="80">
-                        </a>
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <span class="text-center">
-                                <a class="btn-primary" href="@Url.Action("Index","Amministrazione")">Amministrazione</a>
-                                <a class="btn-primary" href="@Url.Action("ListaUtenti","Amministrazione")">Gestione Utenti</a>
-                            </span>
-                        }
-                    </div>
-                    <div class="col-10 col-md-8 mt-4">
-                        <h1>
-                            La Casa Dei Libri
-                        </h1>
-                    </div>
-
-                    <div class="col-12 col-md-2 mt-2 ">
+        <nav class="navbar navbar-expand-lg" style="background-color:rgb(143, 107, 82);">
+            <div class="container-fluid ">
+                <a class="navbar-brand text-white" href="#"><img src="https://i.pinimg.com/originals/7d/e1/52/7de1524dc6e04749931920474056b7c0.png" alt="Logo" class="m-4 bg-white rounded-circle" height="80"></a>
+                <a class="navbar-brand nav-titolo active text-white" href="#"> La Casa dei libri </a>
+                @if (User.IsInRole("Admin"))
+                {
+                    <span class="text-center">
+                        <a class="btn-primary" href="@Url.Action("Index","Amministrazione")">Amministrazione</a>
+                        <a class="btn-primary" href="@Url.Action("ListaUtenti","Amministrazione")">Gestione Utenti</a>
+                    </span>
+                }
+                <button class="navbar-toggler  btn-close-white " type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon "></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarScroll">
+                    <ul class="navbar-nav  me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 75vh; ">
+                        <li class="nav-item ">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Cliente" asp-action="Index">Libri</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Libri
+                            </a>
+                            <ul class="dropdown-menu ">
+                                <li><a class="dropdown-item text-white" asp-area="" asp-controller="Cliente" asp-action="Index">Another action</a></li>
+                                <li><hr class="dropdown-divider text-white"></li>
+                                <li><a class="dropdown-item text-white" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item text-white">
+                            <a class="nav-link disabled text-white">Link</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex text-white" role="login">
                         <partial name="_LoginPartial" />
                     </div>
                 </div>
             </div>
         </nav>
+
+
+
+
+
+
+        
     </header>
     <div class="container">
         <main role="main" class="pb-3">
