@@ -38,10 +38,10 @@ function loadProdotti(searchString) {
                 document.getElementById("Contenuto_utente").innerHTML +=
                     `
 
-    <section class="listaLibri ">
+    
 
 
-		<div class="containerLibri ">
+		<div class="containerLibri mt-4">
 
 			<div class="card">
 				        <div class="content">
@@ -71,7 +71,7 @@ function loadProdotti(searchString) {
 				
 		
 		</div>
-	</section>
+	
 
  
 
