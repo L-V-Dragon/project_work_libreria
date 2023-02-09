@@ -1,67 +1,57 @@
 ﻿@model LibreriaView
 
-<h1 class="text-center mt-5 mb-xl-5">Modifica il libro</h1>
+<h1 class="mt-5 mb-xl-5">Modifica il libro</h1>
 <div class="container">
-    <form asp-controller="Amministrazione" asp-action="Update">
+	<form asp-controller="Amministrazione" asp-action="Update">
 
-        @Html.AntiForgeryToken()
-        <input asp-for="Libro.Id" type="hidden" class="form-control">
-        <input asp-for="Libro.Like" type="hidden" class="form-control">
-        <input asp-for="Libro.Quantita" type="hidden" class="form-control" />
-        <div class="mb-3 col-4">
-            <label>Inserire il titolo libro:</label>
-            <input asp-for="Libro.Titolo" type="text" class="form-control" />
-            <span asp-validation-for="Libro.Titolo" class="text-danger"></span>
-        </div>
-        <div class="mb-3 col-4">
-            <label>Inserire l'autore:</label>
-            <input asp-for="Libro.Autore" type="text" class="form-control" />
-            <span asp-validation-for="Libro.Autore" class="text-danger"></span>
-        </div>
-        <div class="mb-3 col-4">
-            <label>Inserire ISBN:</label>
-            <input asp-for="Libro.Isbn" type="text" class="form-control" />
-            <span asp-validation-for="Libro.Isbn" class="text-danger"></span>
-        </div>
-        <div class="mb-3 col-4">
-            <label>Inserisci la trama:</label>
-            <input asp-for="Libro.Trama" type="text" class="form-control" />
-        </div>
-        <div class="mb-3 col-4">
-            <label>Categoria:</label>
-            <select asp-for="Libro.GenereId" rows="10" class="d-block w-100">
-                @foreach (Genere categoria in Model.Genere) {
-                    <option value="@categoria.Id">@categoria.Nome</option>
-                }
+		@Html.AntiForgeryToken()
+		<input asp-for="Libro.Id" type="hidden" class="form-control">
+		<input asp-for="Libro.Like" type="hidden" class="form-control">
+		<input asp-for="Libro.Quantita" type="hidden" class="form-control" />
+		<div class="mb-3 col-4">
+			<label>Libro:</label>
+			<input asp-for="Libro.Titolo" type="text" class="form-control" />
+			<span asp-validation-for="Libro.Titolo" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-4">
+			<label>Autore:</label>
+			<input asp-for="Libro.Autore" type="text" class="form-control" />
+			<span asp-validation-for="Libro.Autore" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-4">
+			<label>ISBN:</label>
+			<input asp-for="Libro.Isbn" type="text" class="form-control" />
+			<span asp-validation-for="Libro.Isbn" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-4">
+			<label>Trama:</label>
+			<input asp-for="Libro.Trama" type="text" class="form-control" />
+		</div>
+		<div class="mb-3 col-4">
+			<label>Categoria:</label>
+			<select asp-for="Libro.GenereId" rows="10" class="d-block w-100">
+				@foreach (Genere categoria in Model.Genere)
+				{
+					<option value="@categoria.Id">@categoria.Nome</option>
+				}
 
-                <span asp-validation-for="Libro.GenereId" class="text-danger"></span>
-            </select>
-        </div>
+				<span asp-validation-for="Libro.GenereId" class="text-danger"></span>
+			</select>
+		</div>
 
-        <div class="mb-3 col-4">
-            <label>Inserire l'immagine del libro:</label>
-            <input asp-for="Libro.Foto" type="text" class="form-control" />
-            <span asp-validation-for="Libro.Foto" class="text-danger"></span>
-        </div>
-                <div class="mb-3 col-4">
-            <label>Inserire prezzo:</label>
-            <input asp-for="Libro.Prezzo" type="text" class="form-control" />
-            <span asp-validation-for="Libro.Prezzo" class="text-danger"></span>
-        </div>
+		<div class="mb-3 col-4">
+			<label>Copertina del libro:</label>
+			<input asp-for="Libro.Foto" type="text" class="form-control" />
+			<span asp-validation-for="Libro.Foto" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-4">
+			<label>Prezzo:</label>
+			<input asp-for="Libro.Prezzo" type="text" class="form-control" />
+			<span asp-validation-for="Libro.Prezzo" class="text-danger"></span>
+		</div>
 
-        <div class="mb-3 col-4">
-            <label>Categoria:</label>
-            <select asp-for="Libro.GenereId" class="h-50 d-block w-100">
-                <option value=""></option>
-                @foreach (Genere categoria in Model.Genere) {
-                    <option value="@categoria.Id">@categoria.Nome</option>
-                }
 
-                <span asp-validation-for="Libro.GenereId" class="text-danger"></span>
-            </select>
-        </div>
-
-        <button type="submit" class="btn btn-primary mb-xxl-5">Invia</button>
-        <a class="btn btn-primary col-1  mb-xxl-5" href="@Url.Action("Index", "Amministrazione" )" role="button">Home</a>
-    </form>
+		<button type="submit" class="btn btn-primary mb-xxl-5">Invia</button>
+		<a class="btn btn-primary mb-xxl-5" href="@Url.Action("Index", "Amministrazione" )" role="button">Home</a>
+	</form>
 </div>
