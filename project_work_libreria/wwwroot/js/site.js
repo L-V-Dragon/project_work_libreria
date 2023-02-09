@@ -110,6 +110,8 @@ function loadTabella(searchString) {
             
             <td>${libro.isbn}</td>
             <td>${libro.titolo}</td>
+            <td>${libro.autore}</td>
+            <td>${libro.genere.nome}</td>
             <td>${libro.prezzo}</td>
             <td class="js">${libro.quantita}</td>
             <td>${libro.like}</td>
@@ -152,7 +154,27 @@ function resetcolor() {
 
 function changeClass(event) {
     event.currentTarget.classList.toggle("is-active");
+    axios.get("/api/Apiamministrazione", {})
+        .then(res => {
+            res.data.forEach(libro => {
+                debugger;
+                if (!document.querySelector(".heart").classList.contains("is-active")) {
+                    libro.like--;
+                } else {
+                    libro.like++;
+                }
+                document.getElementById('like').innerHTML = "Likes: " + libro.like;
+                axios.put(`/api/Apiamministrazione/${libro.id}`, libro, {
+                }).then(rensponse => {
+                    console.log(response);
+                })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            });
+        });
 }
+
 
 window.onload =async function afterWebPageLoad() {
     await new Promise(r => setTimeout(r, 250));
@@ -180,23 +202,20 @@ function aggiornaPrezzo() {
     let prezzo = parseFloat(document.getElementById("PrezzoLibro").innerHTML.replace(",", "."));
     let quantitaDisponibile = document.getElementById("QuantitaMagazzino").value;
     let quantitaCheck = quantitaDisponibile - quantita;
-    debugger;
     let totale = prezzo * quantita;
     document.getElementById("TotaleParziale").innerHTML = totale;
     document.getElementById("Totale").innerHTML = totale;
-    debugger;
+    
     if (quantitaCheck < 0) {
         document.getElementById("BottoneCompra").disabled = true;
-        document.getElementById("disponibilita").classList.remove("text-success");
-        document.getElementById("disponibilita").classList.add("text-muted");
-        document.getElementById("iconaDisponibilita").classList.remove("text-success");
-        document.getElementById("iconaDisponibilita").classList.add("text-muted");
+        document.getElementById("disponibilita").classList.replace("text-success","text-muted");
+        document.getElementById("iconaDisponibilita").classList.replace("text-success","text-muted");
+        document.getElementById("QuantitaDisp").classList.replace("text-success", "text-danger");
     } else {
         document.getElementById("BottoneCompra").disabled = false;
-        document.getElementById("disponibilita").classList.remove("text-muted");
-        document.getElementById("disponibilita").classList.add("text-success");
-        document.getElementById("iconaDisponibilita").classList.remove("text-muted");
-        document.getElementById("iconaDisponibilita").classList.add("text-success");
+        document.getElementById("disponibilita").classList.replace("text-muted", "text-success");
+        document.getElementById("iconaDisponibilita").classList.replace("text-muted","text-success");
+        document.getElementById("QuantitaDisp").classList.replace("text-danger", "text-success");
 
     }
     

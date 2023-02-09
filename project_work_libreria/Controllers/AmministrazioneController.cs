@@ -1,11 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.SqlServer.Server;
 using project_work_libreria.Database;
 using project_work_libreria.Models;
+using System.Data;
 
 namespace project_work_libreria.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AmministrazioneController : Controller
     {
         public IActionResult Index()
@@ -188,5 +193,94 @@ namespace project_work_libreria.Controllers
             return RedirectToAction("Index");
         }
 
+
+        //Comandi per gestire gli account registrati
+        [HttpGet]
+        public IActionResult ListaUtenti(string id) {
+            LibreriaContext db = new();
+            var Users = db.Users.ToList();
+            List<UserForView> users = new();
+            foreach (var user in Users) {
+                UserForView RuoliUtente = new();
+                var Ruoli= db.Roles.ToList();
+                RuoliUtente.Ruoli = Ruoli;
+                var RuoloUtente = db.UserRoles.Where(x => x.UserId== user.Id).FirstOrDefault();
+                if(RuoloUtente is not null) {
+                    string RuoloUtenteId = RuoloUtente.RoleId;
+                    var RuoloPerUtente= db.Roles.Where(y=> y.Id==RuoloUtenteId).FirstOrDefault();
+                    RuoliUtente.UserRuolo = RuoloPerUtente;
+                } else {
+                    RuoliUtente.UserRuolo= null;
+                }
+                RuoliUtente.User = user;
+                users.Add(RuoliUtente);
+                users=users.OrderBy(u => u.User.UserName).ToList();
+            }
+            return View(users);
+        }
+
+        [HttpGet]
+        public IActionResult ModificaUtente(string id) {
+
+            using LibreriaContext db = new();
+            var User = db.Users.Where(x=>x.Id==id).FirstOrDefault();
+            var Ruoli = db.Roles.ToList();
+            var UserRuolo= db.UserRoles.Where(y=>y.UserId == User.Id).FirstOrDefault();
+            UserForView UserModel = new();
+            UserModel.User = User;          
+            UserModel.Ruoli = Ruoli;
+            if(UserRuolo is not null) {
+                string IdRuolo = UserRuolo.RoleId;
+                var RuoloPerUtente= db.Roles.Where(y => y.Id == IdRuolo).FirstOrDefault();
+                UserModel.UserRuolo = RuoloPerUtente;
+            } else {
+                UserModel.UserRuolo= null;
+            }
+
+
+            return View(UserModel);
+        }
+        [HttpPost]
+        public IActionResult ModificaUtente(UserForView formdata) {
+
+            using LibreriaContext db = new();
+            var user= db.Users.Where(x=> x.Id == formdata.User.Id).FirstOrDefault();
+            var ruolo= db.Roles.Where(y=>y.Id == formdata.UserRuolo.Id).FirstOrDefault();
+            if (ruolo == null) {
+                IdentityUserRole<string> identityUserRole = new();
+                identityUserRole.UserId = formdata.User.Id;
+                identityUserRole.RoleId = formdata.UserRuolo.Id;
+                db.UserRoles.Add(identityUserRole);
+            } else {
+
+                var ruoloUser = db.UserRoles.Where(x => x.UserId == formdata.User.Id).FirstOrDefault();
+                if (ruoloUser == null) {
+                    IdentityUserRole<string> identityUserRole = new();
+                    identityUserRole.UserId = formdata.User.Id;
+                    identityUserRole.RoleId = formdata.UserRuolo.Id;
+                    db.UserRoles.Add(identityUserRole);
+                } else {
+
+
+                    db.Remove(ruoloUser);
+                    db.SaveChanges();
+                    IdentityUserRole<string> identityUserRole = new();
+                    identityUserRole.UserId = formdata.User.Id;
+                    identityUserRole.RoleId = formdata.UserRuolo.Id;
+                    db.UserRoles.Add(identityUserRole);
+                }
+            }
+                db.SaveChanges();
+            return RedirectToAction("ListaUtenti");
+        }
+
+        public IActionResult RimuoviUtente(string id) {
+
+            LibreriaContext db = new();
+            var user = db.Users.Where(x=>x.Id == id).FirstOrDefault();
+            db.Remove(user);
+            db.SaveChanges();
+            return RedirectToAction("ListaUtenti");
+        }
     }
 }

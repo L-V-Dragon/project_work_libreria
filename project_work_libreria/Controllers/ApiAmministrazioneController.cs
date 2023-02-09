@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using project_work_libreria.Database;
 using project_work_libreria.Models;
@@ -43,6 +44,16 @@ namespace project_work_libreria.Controllers {
 
                 return Ok(libro);
             }
+        }
+        [HttpPut("{id}")]
+        [Authorize]
+        public IActionResult Like(int id, [FromBody]Libro libro) {
+            using LibreriaContext db = new();
+            Libro? libroDb= db.Libri.Where(x=>x.Id==libro.Id).FirstOrDefault();
+            libroDb.Like = libro.Like;
+            db.SaveChanges();
+            return Ok(libro.Like);
+
         }
     }
 }

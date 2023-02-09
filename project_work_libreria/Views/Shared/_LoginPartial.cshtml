@@ -6,14 +6,16 @@
 <ul class="navbar-nav text-white">
 @if (SignInManager.IsSignedIn(User))
 {
-        var x = User.IsInRole("Admin");
-        <h1>@x</h1>
         <li class="nav-item">
+            @if (User.IsInRole("Admin")) {
+                <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Salve @UserManager.GetUserName(User)!</a>
+            }else{
             <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-    </li>
+            }
+        </li>
     <li class="nav-item">
-            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Cliente", new { area = "" })">
+            <button id="logout" type="submit" class="nav-link btn">Logout</button>
         </form>
     </li>
 }
