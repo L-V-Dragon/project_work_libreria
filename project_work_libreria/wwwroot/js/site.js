@@ -40,10 +40,11 @@ function loadProdotti(searchString) {
 
     
 
+  
 
-		<div class="containerLibri mt-4">
+		<div class="containerLibri row row-cols-1 row-cols-md-3 g-4 mt-5">
 
-			<div class="card">
+			<div class="card col">
 				        <div class="content">
 					        <div class="imgBx">
 						        <img src="${libro.foto}">
