@@ -15,11 +15,13 @@ else
         <div class="col-6 descrizione">
             <h1 class="text-black mb-3" style="text-align: justify"> Start your Journey <br> with Books   </h1>
             <h4 class="text-black mt-5 mb-2" style="text-align: justify">Discover many fantastic books <br> and expand your knowledge </h4>
-           
+
         </div>
 
 
-
+        @{
+            var libriQuantità = Model.OrderByDescending(x => x.Like).ToList();
+        }
 
         <div class="col-4">
             <div id="carouselExampleInterval"
@@ -27,9 +29,9 @@ else
              data-bs-ride="carousel">
                 <div class="carousel-inner">
                     @{int i = 0;}
-                    @foreach (Libro libro in Model)
+                    @foreach (Libro libro in libriQuantità)
                     {
-                        if (i == 0) 
+                        if (i == 0 )
                         
                         {
                             <div class="carousel-item active" data-bs-interval="10000">
@@ -71,9 +73,13 @@ else
                             </div>
                         }
 
-                        
-                            i++;
-                        
+
+                        i++;
+
+                        if (i>3)
+                        {
+                            break;
+                        }
 
 
                 }
