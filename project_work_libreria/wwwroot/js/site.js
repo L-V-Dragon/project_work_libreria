@@ -205,8 +205,15 @@ function aggiornaPrezzo() {
     let quantitaCheck = quantitaDisponibile - quantita;
     let totale = prezzo * quantita;
     document.getElementById("TotaleParziale").innerHTML = totale;
-    document.getElementById("Totale").innerHTML = totale;
-    
+    debugger;
+    if (totale > 50) {
+        document.getElementById("Totale").innerHTML = totale +1; 
+        document.getElementById("Sconto").innerHTML = "2,50 €";
+    } else {
+        document.getElementById("Sconto").innerHTML = "0 €";
+        document.getElementById("Totale").innerHTML = totale + 3.50;
+    }
+
     if (quantitaCheck < 0) {
         document.getElementById("BottoneCompra").disabled = true;
         document.getElementById("disponibilita").classList.replace("text-success","text-muted");
@@ -217,6 +224,7 @@ function aggiornaPrezzo() {
         document.getElementById("disponibilita").classList.replace("text-muted", "text-success");
         document.getElementById("iconaDisponibilita").classList.replace("text-muted","text-success");
         document.getElementById("QuantitaDisp").classList.replace("text-danger", "text-success");
+        
 
     }
     
