@@ -163,7 +163,7 @@ function changeClass(event) {
                 } else {
                     libro.like++;
                 }
-                document.getElementById('like').innerHTML = "Likes: " + libro.like;
+                document.getElementById('like').innerHTML = libro.like;
                 axios.put(`/api/Apiamministrazione/${libro.id}`, libro, {
                 }).then(rensponse => {
                     console.log(response);
