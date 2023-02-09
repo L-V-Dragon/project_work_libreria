@@ -12,7 +12,7 @@
     <header>
         <nav class="text-white bg-nav text-center">
             <div class="container-fluid my-4 ">
-
+               <h1>@User.IsInRole("Admin")</h1>
                 <div class="row">
                     <div class="col-2 col-md-2 align-content-center">
                         <a class="" href="@Url.Action("Index", "Cliente")">

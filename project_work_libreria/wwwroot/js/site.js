@@ -95,6 +95,8 @@ function loadTabella(searchString) {
             
             <td>${libro.isbn}</td>
             <td>${libro.titolo}</td>
+            <td>${libro.autore}</td>
+            <td>${libro.genere.nome}</td>
             <td>${libro.prezzo}</td>
             <td class="js">${libro.quantita}</td>
             <td>${libro.like}</td>

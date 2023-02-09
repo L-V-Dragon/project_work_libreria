@@ -245,14 +245,32 @@ namespace project_work_libreria.Controllers
 
             using LibreriaContext db = new();
             var user= db.Users.Where(x=> x.Id == formdata.User.Id).FirstOrDefault();
-            var ruolo= db.UserRoles.Where(y=>y.RoleId == formdata.UserRuolo.Id).FirstOrDefault();
-            db.Remove(ruolo);
-            db.SaveChanges();
-            IdentityUserRole<string> identityUserRole = new();
-            identityUserRole.UserId = user.Id;
-            identityUserRole.RoleId = formdata.UserRuolo.Id;
-            db.UserRoles.Add(identityUserRole);
-            db.SaveChanges();
+            var ruolo= db.Roles.Where(y=>y.Id == formdata.UserRuolo.Id).FirstOrDefault();
+            if (ruolo == null) {
+                IdentityUserRole<string> identityUserRole = new();
+                identityUserRole.UserId = formdata.User.Id;
+                identityUserRole.RoleId = formdata.UserRuolo.Id;
+                db.UserRoles.Add(identityUserRole);
+            } else {
+
+                var ruoloUser = db.UserRoles.Where(x => x.UserId == formdata.User.Id).FirstOrDefault();
+                if (ruoloUser == null) {
+                    IdentityUserRole<string> identityUserRole = new();
+                    identityUserRole.UserId = formdata.User.Id;
+                    identityUserRole.RoleId = formdata.UserRuolo.Id;
+                    db.UserRoles.Add(identityUserRole);
+                } else {
+
+
+                    db.Remove(ruoloUser);
+                    db.SaveChanges();
+                    IdentityUserRole<string> identityUserRole = new();
+                    identityUserRole.UserId = formdata.User.Id;
+                    identityUserRole.RoleId = formdata.UserRuolo.Id;
+                    db.UserRoles.Add(identityUserRole);
+                }
+            }
+                db.SaveChanges();
             return RedirectToAction("ListaUtenti");
         }
 
