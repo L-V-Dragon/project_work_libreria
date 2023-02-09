@@ -20,20 +20,20 @@
     box-sizing: border-box;
 }
 
-body {
-   /* background-color: var(--body-bg);
+.bodyDettagli {
+    /* background-color: var(--body-bg);*/
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;*/
+    justify-content: center;
 }
 
 .cover {
-   /* width: calc(var(--baseline) * 60);
-    height: calc(var(--baseline) * 42.6);*/
- width: 650px;
-   height:445px;
+    width: calc(var(--baseline) * 60);
+    height: calc(var(--baseline) * 42.6);
+ /*width: 650px;
+   height:445px;*/
     box-shadow: 0 0 100px rgba(0, 0, 0, .3);
 }
 

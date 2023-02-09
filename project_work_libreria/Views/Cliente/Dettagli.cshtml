@@ -7,8 +7,8 @@
 
 
 
-<body>
-    <main id="main">
+<body >
+    <main id="main" class="bodyDettagli  mb-lg-5">
     </main>
 
 </body>
@@ -32,31 +32,48 @@
           </label>
 
           <label for="page-2" class="book__page book__page--4">
-            <div class="page__content">
-             
-                          <table>
-                                   <tr class="m-0 p-0">
-                                                                            <td align="left">Aggiungi</td><td align="left"> ai preferiti</td><td align="right"><div class="heart "></div>   </td>
-                                          </tr>
-                           <tr>
-                                                            <td align="left"> <span class="myLikes">Likes: </span></td><td align="left">${libro.like}</td><td align="right"></div>   </td>
-                          </tr>
-                                  <tr>
-                                            <td align="left">Isbn: </td><td align="left"> ${libro.isbn} </td>
-                                  </tr>
-                                        
-                                          <tr>
-                                                                    <td align="left">Prezzo: </td><td align="left"> <p class="m-0 p-0">${libro.prezzo} € </p> </td>
-                                                  </tr>
-                         
-                                  <tr>
-                                                                    <td align="left"> </td><td align="left"><a href="/Cliente/Ordine/${libro.id}" class="btn btn-info  ">
-                                                 <span class="glyphicon glyphicon-tag"></span> Ordina</a></td><td align="right">  </td>
-                                  </tr>
-                                 
-                            </button>
+            <div class="page__content ">
+                     <h1 class="page__content-title">Dettagli</h1>
 
-                        </table>
+                                <table class="table table-borderless ">
+             
+              <tbody class="table-group-divider">
+                <tr>
+                          <td >Isbn:</td>
+
+                                          <td colspan="2">${libro.isbn}</td>
+                                 
+
+                </tr>
+                <tr>
+                  
+                          <td>Likes:</td>
+                          <td id="like">${libro.like}</td>
+
+                </tr>
+                         <tr>
+                          
+                                          <td>Prezzo:</td>
+                                          <td>${libro.prezzo} €</td>
+
+                        </tr>
+                                <tr>
+                                                                                  <td></td>
+                                                                                          <td></td>
+                                                                                  <td > <div class="heart "></div></td>
+
+
+
+                                </tr>
+                <tr>
+
+                          <td colspan="2"> </td>
+                          <td> <a href="/Cliente/Ordine/${libro.id}" class="btn btn-info  ">
+                                                         <span class="glyphicon glyphicon-tag"></span> Ordina</a> </td>
+                </tr>
+              </tbody>
+            </table>
+             
 
              
               <div class="page__number">3</div>
