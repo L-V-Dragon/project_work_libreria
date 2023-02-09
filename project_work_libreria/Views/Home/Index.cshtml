@@ -7,22 +7,19 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-@if (!SignInManager.IsSignedIn(User)) {
-   
-} else {
-    <h1> Ciao @UserManager.GetUserName(User)</h1>
-}
-
-
 
 
 <div class="container row">
-    
-    <div class="caption col mt-5 mx-5 p-0">
-        <span class="p-0 gap-0">I tuoi libri <br> a domicilio <br></span>
+
+    <div class=" col mt-5 mx-5 p-0">
+        <span class="TitoloHome  gap-0 mb-3">I tuoi libri  a domicilio </span>
+        <p class="mt-3"> "La Casa dei Libri è il luogo ideale per esplorare e sperimentare la passione per la lettura, offrendo una vasta selezione di libri che rappresentano un viaggio nella conoscenza e nella memoria, con un'atmosfera accogliente e confortevole." </p>
         <div class="d-grid gap-2 d-md-block mt-5">
-            <button class="btn btn-primary mx-3" type="button">Registrati gratis</button>
-            <button class="btn btn-primary" type="button">Esplora</button>
+            @if (!SignInManager.IsSignedIn(User))
+            {   
+                <a class="btn btn-primary mx-3" type="button"asp-area="Identity" asp-page="/Account/Register">Registrati gratis</a>
+            }
+            <a href="@Url.Action("Index","Cliente")" class="btn btn-primary" type="button">Esplora</a>
         </div>
 
     </div>

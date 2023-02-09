@@ -444,13 +444,10 @@ body {
 
 
 
-.caption {
-    position:relative;
-    left: 0;
-    top: 50%;
-    width: 100%;
-    color: #000;
-    font-size: 400%
+.TitoloHome {
+   
+   
+    font-size: 200%
 }
 
     
